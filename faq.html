@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FAQ — Crikitiso</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow:wght@400;600;800&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-logo">
+      <img src="logo.png" alt="Crikitiso Logo" class="logo-img"/>
+      <span class="nav-brand">CRIKITISO</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="descargas.html">Descargas</a></li>
+      <li><a href="nosotros.html">Sobre Nosotros</a></li>
+      <li><a href="faq.html" class="active">FAQ</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="scanlines"></div>
+    <div class="hero-bg-grid"></div>
+    <div class="page-hero-content">
+      <span class="terminal-tag">&gt;_ /faq</span>
+      <h1>Preguntas <span class="accent">frecuentes</span></h1>
+      <p>Todo lo que necesitas saber antes de descargar e instalar una ISO de Crikitiso.</p>
+    </div>
+  </section>
+
+  <section class="faq-page-section">
+
+    <div class="faq-category">
+      <div class="faq-cat-header">
+        <span class="section-tag">// general</span>
+        <h2>Sobre <span class="accent">Crikitiso</span></h2>
+      </div>
+      <div class="faq-list faq-list-big">
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>¿Qué es Crikitiso?</span>
+            <span class="faq-arrow">▸</span>
+          </div>
+          <div class="faq-a">Crikitiso es una empresa que toma distribuciones Linux base (como Pop!_OS o Ubuntu) y las personaliza para adaptarlas a un uso concreto: gaming, edición creativa o desarrollo de software. El objetivo es que el usuario tenga un sistema listo para funcionar desde el primer arranque, sin tener que instalar ni configurar nada a mano.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>¿Las ISOs son gratuitas?</span>
+            <span class="faq-arrow">▸</span>
+          </div>
+          <div class="faq-a">Sí. Todas nuestras ISOs se pueden descargar de forma gratuita pasando por un breve anuncio de unos 15 segundos. Si prefieres no ver el anuncio, puedes hacer una pequeña aportación de 1€ a través de Ko-fi para obtener el enlace de descarga directa.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>¿En qué distribuciones están basadas?</span>
+            <span class="faq-arrow">▸</span>
+          </div>
+          <div class="faq-a">La ISO de Gaming está basada en Pop!_OS 22.04 LTS, que es especialmente conocida por su buen soporte de drivers de GPU. La ISO de Edición está basada en Ubuntu Desktop, que ofrece una base muy estable para software multimedia. La ISO de Programación también está basada en Pop!_OS 22.04 LTS, dado su entorno limpio y bien documentado.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>¿Con qué herramienta creáis las ISOs?</span>
+            <span class="faq-arrow">▸</span>
+          </div>
+          <div class="faq-a">Usamos Cubic (Custom Ubuntu ISO Creator), una herramienta que permite modificar ISOs de distribuciones basadas en Ubuntu de forma gráfica y controlada. Nos permite añadir software, configurar el sistema, eliminar paquetes innecesarios y personalizar el entorno antes de generar la ISO final.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-category">
+      <div class="faq-cat-header">
+        <span class="section-tag">// compatibilidad</span>
+        <h2>Hardware y <span class="accent">requisitos</span></h2>
+      </div>
+      <div class="faq-list faq-list-big">
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>¿Es compatible con mi PC?</span>
+            <span class="faq-arrow">▸</span>
+          </div>
+          <div class="faq-a">Nuestras ISOs son compatibles con la gran mayoría de PCs de 64 bits fabricados en los últimos 10 años. Necesitas un procesador x86_64 (Intel o AMD), al menos 4 GB de RAM (8 GB recomendado) y 25 GB de espacio en disco. No son compatibles con procesadores ARM ni con Macs con chip Apple Silicon.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>¿Puedo instalarla junto a Windows (dual boot)?</span>
+            <span class="faq-arrow">▸</span>
+          </div>
+          <div class="faq-a">Sí, es posible instalar cualquiera de nuestras ISOs en dual boot junto a Windows. Durante el proceso de instalación, el instalador gráfico te dará la opción de instalar junto al sistema existente. Recomendamos hacer una copia de seguridad de tus datos antes de proceder, por precaución.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>¿Funciona con tarjeta gráfica NVIDIA?</span>
+            <span class="faq-arrow">▸</span>
+          </div>
+          <div class="faq-a">Sí. La ISO de Gaming incluye los drivers propietarios de NVIDIA preinstalados y configurados. Las ISOs de Edición y Programación incluyen los drivers de código abierto (Nouveau) por defecto, aunque puedes instalar los drivers propietarios fácilmente desde el gestor de controladores.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>¿Cuánto espacio ocupa la instalación?</span>
+            <span class="faq-arrow">▸</span>
+          </div>
+          <div class="faq-a">Una vez instalado el sistema, ocupa aproximadamente entre 12 y 18 GB dependiendo de la ISO. Recomendamos tener al menos 40 GB disponibles para el sistema y tus archivos personales con comodidad.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-category">
+      <div class="faq-cat-header">
+        <span class="section-tag">// instalación</span>
+        <h2>Proceso de <span class="accent">instalación</span></h2>
+      </div>
+      <div class="faq-list faq-list-big">
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>¿Qué necesito para instalar la ISO?</span>
+            <span class="faq-arrow">▸</span>
+          </div>
+          <div class="faq-a">Necesitas un USB de al menos 8 GB y un programa para flashear la ISO en él. Recomendamos Balena Etcher (disponible para Windows, Mac y Linux) o Rufus (solo Windows). Una vez creado el USB booteable, reinicia tu PC y arranca desde el USB para iniciar el instalador.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>¿Cuánto tarda la instalación?</span>
+            <span class="faq-arrow">▸</span>
+          </div>
+          <div class="faq-a">El proceso completo de instalación suele tardar entre 10 y 20 minutos dependiendo de la velocidad de tu disco. El instalador gráfico es sencillo e intuitivo, guiándote paso a paso sin necesidad de conocimientos técnicos avanzados.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>¿Puedo probarla sin instalar?</span>
+            <span class="faq-arrow">▸</span>
+          </div>
+          <div class="faq-a">Sí. Al arrancar desde el USB, tendrás la opción de ejecutar el sistema en modo Live sin instalar nada en tu disco. Esto te permite probar la distribución y ver si se adapta a tus necesidades antes de comprometerte con la instalación.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>¿Puedo instalarla en una máquina virtual?</span>
+            <span class="faq-arrow">▸</span>
+          </div>
+          <div class="faq-a">Sí, puedes instalar cualquiera de nuestras ISOs en VirtualBox o VMware sin problema. Ten en cuenta que en una máquina virtual el rendimiento será inferior al de una instalación real, especialmente en la ISO de Gaming donde los drivers de GPU no funcionan al 100%.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-category">
+      <div class="faq-cat-header">
+        <span class="section-tag">// soporte</span>
+        <h2>Ayuda y <span class="accent">contacto</span></h2>
+      </div>
+      <div class="faq-list faq-list-big">
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>¿Recibiré actualizaciones del sistema?</span>
+            <span class="faq-arrow">▸</span>
+          </div>
+          <div class="faq-a">Sí. Al estar basadas en distribuciones LTS (Long Term Support), recibirás actualizaciones de seguridad y software a través del gestor de actualizaciones del propio sistema operativo, igual que en cualquier otra distribución Ubuntu o Pop!_OS.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>Tengo un problema, ¿cómo os contacto?</span>
+            <span class="faq-arrow">▸</span>
+          </div>
+          <div class="faq-a">Puedes escribirnos a crikitiso@gmail.com o usar el formulario de contacto en nuestra web. Intentamos responder en menos de 48 horas. También puedes abrir un issue en nuestro repositorio de GitHub si el problema es técnico.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>¿Puedo contribuir al proyecto?</span>
+            <span class="faq-arrow">▸</span>
+          </div>
+          <div class="faq-a">¡Por supuesto! El proyecto está en GitHub y puedes abrir issues con sugerencias o bugs. Si tienes experiencia con Linux y quieres colaborar más activamente, escríbenos a crikitiso@gmail.com y hablamos.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-cta">
+      <p>¿No encuentras respuesta a tu pregunta?</p>
+      <a href="contacto.html" class="btn-primary">Escríbenos →</a>
+    </div>
+
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="logo.png" alt="Crikitiso" class="footer-logo"/>
+        <span>CRIKITISO</span>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Inicio</a>
+        <a href="descargas.html">Descargas</a>
+        <a href="nosotros.html">Sobre Nosotros</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+      <div class="footer-copy">
+        <span class="t-prompt">&gt;_</span> © 2025 Crikitiso S.L. — <a href="aviso-legal.html" class="footer-legal">Aviso Legal</a> · crikitiso@gmail.com
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <!-- COOKIE BANNER -->
+  <div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-inner">
+      <div class="cookie-text">
+        <span class="cookie-icon">🍪</span>
+        <div>
+          <strong>Esta web usa cookies técnicas</strong>
+          <p>Usamos cookies estrictamente necesarias. Los servicios de descarga externos (Linkvertise) pueden usar sus propias cookies. <a href="aviso-legal.html" class="cookie-link">Más info</a></p>
+        </div>
+      </div>
+      <div class="cookie-actions">
+        <button class="btn-ghost cookie-btn" onclick="rejectCookies()">Solo necesarias</button>
+        <button class="btn-primary cookie-btn" onclick="acceptCookies()">Aceptar</button>
+      </div>
+    </div>
+  </div>
+  <script src="cookies.js"></script>
+
+</body>
+</html>

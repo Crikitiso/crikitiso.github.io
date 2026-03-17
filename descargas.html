@@ -18,6 +18,7 @@
       <li><a href="index.html">Inicio</a></li>
       <li><a href="descargas.html" class="active">Descargas</a></li>
       <li><a href="nosotros.html">Sobre Nosotros</a></li>
+      <li><a href="faq.html">FAQ</a></li>
       <li><a href="contacto.html">Contacto</a></li>
     </ul>
     <div class="hamburger" onclick="toggleMenu()">
@@ -208,14 +209,33 @@
         <a href="index.html">Inicio</a>
         <a href="descargas.html">Descargas</a>
         <a href="nosotros.html">Sobre Nosotros</a>
+        <a href="faq.html">FAQ</a>
         <a href="contacto.html">Contacto</a>
       </div>
       <div class="footer-copy">
-        <span class="t-prompt">&gt;_</span> © 2025 Crikitiso S.L. — Proyecto Intermodular 2º GM
+        <span class="t-prompt">&gt;_</span> © 2025 Crikitiso S.L. — <a href="aviso-legal.html" class="footer-legal">Aviso Legal</a> · crikitiso@gmail.com
       </div>
     </div>
   </footer>
 
   <script src="main.js"></script>
+  <!-- COOKIE BANNER -->
+  <div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-inner">
+      <div class="cookie-text">
+        <span class="cookie-icon">🍪</span>
+        <div>
+          <strong>Esta web usa cookies técnicas</strong>
+          <p>Usamos cookies estrictamente necesarias. Los servicios de descarga externos (Linkvertise) pueden usar sus propias cookies. <a href="aviso-legal.html" class="cookie-link">Más info</a></p>
+        </div>
+      </div>
+      <div class="cookie-actions">
+        <button class="btn-ghost cookie-btn" onclick="rejectCookies()">Solo necesarias</button>
+        <button class="btn-primary cookie-btn" onclick="acceptCookies()">Aceptar</button>
+      </div>
+    </div>
+  </div>
+  <script src="cookies.js"></script>
+
 </body>
 </html>
