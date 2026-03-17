@@ -25,4 +25,5 @@ function hideCookieBanner() {
   const banner = document.getElementById('cookieBanner');
   banner.classList.remove('show');
   banner.classList.add('hide');
+  setTimeout(() => { banner.style.display = 'none'; }, 450);
 }
