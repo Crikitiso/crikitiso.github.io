@@ -179,7 +179,7 @@ body {
   grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: 4rem;
-  padding: 80px 6vw 80px;
+  padding: 40px 6vw 80px;
   overflow: hidden;
 }
 
@@ -412,7 +412,8 @@ body {
    ============================================= */
 .page-hero {
   position: relative;
-  padding: 140px 6vw 80px;
+  padding: 60px 6vw 80px;
+  margin-top: 64px;
   overflow: hidden;
   border-bottom: 1px solid var(--border);
 }
@@ -934,6 +935,7 @@ select.form-input option { background: var(--bg3); }
   align-items: center;
   gap: .2rem;
   overflow: hidden;
+  margin-top: 64px; /* clear fixed navbar */
 }
 .ad-label {
   font-family: var(--mono);
