@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sobre Nosotros — Crikitiso</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow:wght@400;600;800&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-logo">
+      <img src="logo.png" alt="Crikitiso Logo" class="logo-img"/>
+      <span class="nav-brand">CRIKITISO</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="descargas.html">Descargas</a></li>
+      <li><a href="nosotros.html" class="active">Sobre Nosotros</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="scanlines"></div>
+    <div class="hero-bg-grid"></div>
+    <div class="page-hero-content">
+      <span class="terminal-tag">&gt;_ /about</span>
+      <h1>Quiénes <span class="accent">somos</span></h1>
+      <p>Tres estudiantes de informática con una misión: hacer Linux más accesible y potente para cada caso de uso.</p>
+    </div>
+  </section>
+
+  <!-- MISIÓN -->
+  <section class="about-mission">
+    <div class="mission-grid">
+      <div class="mission-text">
+        <span class="section-tag">// nuestra historia</span>
+        <h2>Nació de una <span class="accent">necesidad real</span></h2>
+        <p>Crikitiso surgió como proyecto final del Ciclo Formativo de Grado Medio de Sistemas Microinformáticos y Redes. La idea era simple: instalar Linux nunca debería ser complicado, y el sistema que te instales debería estar pensado para lo que tú necesitas hacer con él.</p>
+        <p>Cogemos distribuciones base sólidas como Pop!_OS y las transformamos usando herramientas como Cubic, adaptándolas a tres perfiles concretos: gaming, edición creativa y desarrollo de software. Sin bloatware. Sin configuraciones eternas. Listo desde el primer arranque.</p>
+      </div>
+      <div class="mission-terminal">
+        <div class="terminal-window">
+          <div class="terminal-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="terminal-title">about.sh</span>
+          </div>
+          <div class="terminal-body">
+            <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">cat empresa.txt</span></div>
+            <div class="t-line t-out">Nombre: Crikitiso S.L.</div>
+            <div class="t-line t-out">Tipo: Sociedad Limitada</div>
+            <div class="t-line t-out">Sector: Distribuciones Linux</div>
+            <div class="t-line t-out">Base: Pop!_OS (modificada)</div>
+            <div class="t-line t-out">Tool: Cubic ISO Builder</div>
+            <div class="t-line t-out">ISOs: Gaming, Edición, Dev</div>
+            <div class="t-line t-out t-green">[STATUS] Activa ✓</div>
+            <div class="t-line"><span class="t-prompt">$</span> <span class="t-cursor">█</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EQUIPO -->
+  <section class="team-section">
+    <div class="section-header">
+      <span class="section-tag">// el equipo</span>
+      <h2>Tres personas. <span class="accent">Un proyecto.</span></h2>
+    </div>
+    <div class="team-cards">
+
+      <div class="team-card">
+        <div class="team-avatar">CA</div>
+        <div class="team-info">
+          <div class="team-name">Cristian Albizu</div>
+          <div class="team-role">&gt;_ ISO Engineer · Gaming</div>
+          <p class="team-desc">Responsable del desarrollo y personalización de la ISO de Gaming. Especialista en optimización de rendimiento y configuración de drivers en Linux.</p>
+          <div class="team-tags">
+            <span>Pop!_OS</span>
+            <span>Cubic</span>
+            <span>Gaming</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-card featured-team">
+        <div class="team-avatar">IF</div>
+        <div class="team-info">
+          <div class="team-name">Iker Fernández</div>
+          <div class="team-role">&gt;_ Web Developer · Infra</div>
+          <p class="team-desc">Encargado del desarrollo web del proyecto y la infraestructura de distribución de las ISOs. Diseño y programación de esta web.</p>
+          <div class="team-tags">
+            <span>HTML/CSS</span>
+            <span>GitHub Pages</span>
+            <span>Linux</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar">IM</div>
+        <div class="team-info">
+          <div class="team-name">Itá Maciel</div>
+          <div class="team-role">&gt;_ ISO Engineer · Dev & Edición</div>
+          <p class="team-desc">Responsable de las ISOs de desarrollo y edición. Especialista en configuración de entornos de trabajo y herramientas creativas en Linux.</p>
+          <div class="team-tags">
+            <span>Dev Tools</span>
+            <span>Multimedia</span>
+            <span>Cubic</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- VALORES -->
+  <section class="values-section">
+    <div class="section-header">
+      <span class="section-tag">// nuestros valores</span>
+      <h2>En qué <span class="accent">creemos</span></h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-item">
+        <div class="value-icon">🔓</div>
+        <h4>Open Source</h4>
+        <p>Todo lo que construimos se basa en software libre. Creemos en la transparencia y en la comunidad.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">⚡</div>
+        <h4>Rendimiento</h4>
+        <p>Sin bloatware. Sin procesos innecesarios. Cada ISO está optimizada para su función específica.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">🛠️</div>
+        <h4>Practicidad</h4>
+        <p>Tu sistema tiene que estar listo para trabajar desde el primer arranque, sin horas de configuración.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">🤝</div>
+        <h4>Comunidad</h4>
+        <p>Linux es mejor cuando se comparte. Distribuimos nuestras ISOs de forma gratuita para todo el mundo.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="logo.png" alt="Crikitiso" class="footer-logo"/>
+        <span>CRIKITISO</span>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Inicio</a>
+        <a href="descargas.html">Descargas</a>
+        <a href="nosotros.html">Sobre Nosotros</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+      <div class="footer-copy">
+        <span class="t-prompt">&gt;_</span> © 2025 Crikitiso S.L. — Proyecto Intermodular 2º GM
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
