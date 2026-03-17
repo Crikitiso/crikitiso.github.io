@@ -24,7 +24,7 @@ async function enviarMensaje(e) {
   btn.disabled = true;
 
   try {
-    const res = await fetch('https://formspree.io/f/PON_AQUI_TU_ID_FORMSPREE', {
+    const res = await fetch('https://formspree.io/f/mreyordj', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({ nombre, email, asunto, mensaje })
