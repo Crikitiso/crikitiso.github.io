@@ -66,4 +66,4 @@
 
 ---
 
-*Proyecto Intermodular · 2º GM SMR · 2024-2025*
+*Proyecto Intermodular · 2º GM SMR · 2025-2026*
