@@ -905,3 +905,14 @@ select.form-input option { background: var(--bg3); }
   transition: color .2s;
 }
 .footer-legal:hover { color: var(--orange); }
+
+.form-error {
+  display: none;
+  font-family: var(--mono); font-size: .82rem;
+  padding: .75rem; margin-top: 1rem;
+  background: rgba(248,113,113,.06);
+  border: 1px solid rgba(248,113,113,.2);
+  border-radius: 4px;
+}
+.form-error.show { display: block; }
+.t-red { color: var(--red); }
