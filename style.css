@@ -175,7 +175,6 @@ body {
    ============================================= */
 .hero {
   position: relative;
-  min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
@@ -944,21 +943,11 @@ select.form-input option { background: var(--bg3); }
   text-transform: uppercase;
 }
 .ad-inner {
-  width: 100%;
-  max-width: 900px;
-  max-height: 120px;
+  width: 300px;
+  height: 250px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-/* En móvil limitar altura para que no ocupe toda la pantalla */
-@media (max-width: 768px) {
-  .ad-inner {
-    max-height: 80px;
-    max-width: 100%;
-  }
-  .ad-banner-wrap {
-    padding: .2rem .5rem;
-  }
+  margin: 0 auto;
 }
