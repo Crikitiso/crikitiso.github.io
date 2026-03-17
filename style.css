@@ -934,7 +934,10 @@ select.form-input option { background: var(--bg3); }
   flex-direction: column;
   align-items: center;
   gap: .2rem;
+  min-height: 0;
+  overflow: hidden;
 }
+.ad-banner-wrap:has(.ad-inner:empty) { display: none; }
 .ad-label {
   font-family: var(--mono);
   font-size: .62rem;
@@ -950,4 +953,3 @@ select.form-input option { background: var(--bg3); }
   justify-content: center;
   overflow: hidden;
 }
-.ad-inner:empty { display: none; }
