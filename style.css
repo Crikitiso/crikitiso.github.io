@@ -916,3 +916,18 @@ select.form-input option { background: var(--bg3); }
 }
 .form-error.show { display: block; }
 .t-red { color: var(--red); }
+
+/* =============================================
+   AD BANNER
+   ============================================= */
+.ad-banner-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: .5rem 0;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  min-height: 60px;
+  overflow: hidden;
+}
