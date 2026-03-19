@@ -233,22 +233,45 @@ async function iniciarRatings() {
 }
 
 // Contador animado del inicio
-async function animarContadores() {
+function animarNumero(el, target, suffix) {
+  let current = 0;
+  const step = Math.max(1, Math.ceil(target / 50));
+  const interval = setInterval(() => {
+    current = Math.min(current + step, target);
+    el.textContent = current + suffix;
+    if (current >= target) clearInterval(interval);
+  }, 25);
+}
+
+async function iniciarContadores() {
+  const statsBar = document.querySelector('.stats-bar');
+  if (!statsBar) return;
+
   const total = await getTotalValoraciones();
-  const statNums = document.querySelectorAll('.stat-num');
-  statNums.forEach(el => {
-    const target = el.dataset.target === '0' ? total : parseInt(el.dataset.target);
-    let current = 0;
-    const step = Math.ceil(target / 40);
-    const interval = setInterval(() => {
-      current = Math.min(current + step, target);
-      el.textContent = current + (el.dataset.target === '100' ? '%' : '');
-      if (current >= target) clearInterval(interval);
-    }, 30);
-  });
+  const statVal = document.getElementById('stat-valoraciones');
+  if (statVal) {
+    statVal.dataset.target = total;
+    statVal.dataset.suffix = '';
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        document.querySelectorAll('.stat-num[data-target]').forEach(el => {
+          const target = parseInt(el.dataset.target) || 0;
+          const suffix = el.dataset.suffix || '';
+          if (target > 0) animarNumero(el, target, suffix);
+          else if (el.id !== 'stat-descargas') el.textContent = '0' + suffix;
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  observer.observe(statsBar);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   iniciarRatings();
-  if (document.querySelector('.stats-bar')) animarContadores();
+  iniciarContadores();
 });
