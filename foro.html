@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Foro — Crikitiso</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow:wght@400;600;800&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet"/>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1942519662732657" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-logo">
+      <img src="logo.png" alt="Crikitiso Logo" class="logo-img"/>
+      <span class="nav-brand">CRIKITISO</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="descargas.html">Descargas</a></li>
+      <li><a href="nosotros.html">Sobre Nosotros</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="foro.html" class="active">Foro</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="scanlines"></div>
+    <div class="hero-bg-grid"></div>
+    <div class="page-hero-content">
+      <span class="terminal-tag">&gt;_ /foro</span>
+      <h1>Foro de la <span class="accent">comunidad</span></h1>
+      <p>Pregunta, responde y comparte experiencias con otros usuarios de Crikitiso. Todos los comentarios son moderados por el equipo.</p>
+    </div>
+  </section>
+
+  <section class="foro-section">
+    <div class="foro-inner">
+
+      <div class="foro-rules">
+        <div class="foro-rules-header">
+          <span class="section-tag">// normas del foro</span>
+        </div>
+        <div class="foro-rules-list">
+          <div class="foro-rule"><span class="foro-rule-icon">▸</span> Sé respetuoso con el resto de usuarios.</div>
+          <div class="foro-rule"><span class="foro-rule-icon">▸</span> Usa el foro para dudas sobre Linux, las ISOs o el proyecto.</div>
+          <div class="foro-rule"><span class="foro-rule-icon">▸</span> Los comentarios son revisados antes de publicarse.</div>
+          <div class="foro-rule"><span class="foro-rule-icon">▸</span> Contenido ofensivo o spam será eliminado sin aviso.</div>
+        </div>
+      </div>
+
+      <div class="foro-topics">
+        <div class="foro-topic-card">
+          <div class="foro-topic-icon">🎮</div>
+          <div>
+            <div class="foro-topic-title">Gaming</div>
+            <div class="foro-topic-desc">Dudas sobre drivers, rendimiento, compatibilidad de juegos...</div>
+          </div>
+        </div>
+        <div class="foro-topic-card">
+          <div class="foro-topic-icon">🎨</div>
+          <div>
+            <div class="foro-topic-title">Edición</div>
+            <div class="foro-topic-desc">Software creativo, codecs, flujos de trabajo...</div>
+          </div>
+        </div>
+        <div class="foro-topic-card">
+          <div class="foro-topic-icon">💻</div>
+          <div>
+            <div class="foro-topic-title">Programación</div>
+            <div class="foro-topic-desc">Entornos de desarrollo, herramientas, configuración...</div>
+          </div>
+        </div>
+        <div class="foro-topic-card">
+          <div class="foro-topic-icon">🐧</div>
+          <div>
+            <div class="foro-topic-title">General</div>
+            <div class="foro-topic-desc">Cualquier tema relacionado con Linux o Crikitiso.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="foro-comments-wrap">
+        <span class="section-tag">// comentarios y preguntas</span>
+        <h2>Únete a la <span class="accent">conversación</span></h2>
+
+        <div id="disqus_thread"></div>
+        <script>
+          var disqus_config = function () {
+            this.page.url = 'https://crikitiso.github.io/foro.html';
+            this.page.identifier = 'foro-crikitiso';
+          };
+          (function() {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://crikitiso.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+          })();
+        </script>
+        <noscript>Por favor activa JavaScript para ver los comentarios de <a href="https://disqus.com/?ref_noscript">Disqus.</a></noscript>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="logo.png" alt="Crikitiso" class="footer-logo"/>
+        <span>CRIKITISO</span>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Inicio</a>
+        <a href="descargas.html">Descargas</a>
+        <a href="nosotros.html">Sobre Nosotros</a>
+        <a href="faq.html">FAQ</a>
+        <a href="foro.html">Foro</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+      <div class="footer-copy">
+        <span class="t-prompt">&gt;_</span> © 2026 Crikitiso S.L. — <a href="aviso-legal.html" class="footer-legal">Aviso Legal</a> · crikitiso@gmail.com
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script id="dsq-count-scr" src="//crikitiso.disqus.com/count.js" async></script>
+
+  <!-- COOKIE BANNER -->
+  <div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-inner">
+      <div class="cookie-text">
+        <span class="cookie-icon">🍪</span>
+        <div>
+          <strong>Esta web usa cookies técnicas</strong>
+          <p>Usamos cookies estrictamente necesarias. Los servicios de descarga externos (Linkvertise) pueden usar sus propias cookies. <a href="aviso-legal.html" class="cookie-link">Más info</a></p>
+        </div>
+      </div>
+      <div class="cookie-actions">
+        <button class="btn-ghost cookie-btn" onclick="rejectCookies()">Solo necesarias</button>
+        <button class="btn-primary cookie-btn" onclick="acceptCookies()">Aceptar</button>
+      </div>
+    </div>
+  </div>
+  <script src="cookies.js"></script>
+
+</body>
+</html>
