@@ -19,7 +19,7 @@ async function getValoraciones(iso) {
 
 async function getTotalValoraciones() {
   try {
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/valoraciones?select=id`, { headers: { ...H, 'Prefer': 'count=exact' } });
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/valoraciones?${COL.reportada}=eq.false&select=id`, { headers: { ...H, 'Prefer': 'count=exact' } });
     const count = res.headers.get('content-range')?.split('/')[1];
     return parseInt(count) || 0;
   } catch { return 0; }
