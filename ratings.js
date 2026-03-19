@@ -235,44 +235,42 @@ async function iniciarRatings() {
 // Contador animado del inicio
 function animarNumero(el, target, suffix) {
   let current = 0;
-  const step = Math.max(1, Math.ceil(target / 50));
+  const duration = 1200;
+  const steps = 60;
+  const increment = target / steps;
+  let step = 0;
   const interval = setInterval(() => {
-    current = Math.min(current + step, target);
+    step++;
+    current = Math.min(Math.round(increment * step), target);
     el.textContent = current + suffix;
-    if (current >= target) clearInterval(interval);
-  }, 25);
+    if (step >= steps) {
+      el.textContent = target + suffix;
+      clearInterval(interval);
+    }
+  }, duration / steps);
 }
 
 async function iniciarContadores() {
   const statsBar = document.querySelector('.stats-bar');
   if (!statsBar) return;
 
-  // Carga valoraciones primero
   const total = await getTotalValoraciones();
-  const statVal = document.getElementById('stat-valoraciones');
-  if (statVal) {
-    statVal.dataset.target = total;
-  }
-
-  const disparar = () => {
-    // ISOs: 3
-    const isoEl = document.querySelector('.stat-num[data-target="3"]');
-    if (isoEl) animarNumero(isoEl, 3, '');
-
-    // Open Source: 100%
-    const osEl = document.querySelector('.stat-num[data-target="100"]');
-    if (osEl) animarNumero(osEl, 100, '%');
-
-    // Valoraciones: desde Supabase
-    if (statVal && total > 0) animarNumero(statVal, total, '');
-    else if (statVal) statVal.textContent = '0';
-  };
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        disparar();
         observer.unobserve(entry.target);
+
+        const isoEl = document.getElementById('stat-isos');
+        const osEl  = document.getElementById('stat-os');
+        const valEl = document.getElementById('stat-valoraciones');
+
+        if (isoEl) animarNumero(isoEl, 3, '');
+        if (osEl)  animarNumero(osEl, 100, '%');
+        if (valEl) {
+          if (total > 0) animarNumero(valEl, total, '');
+          else valEl.textContent = '0';
+        }
       }
     });
   }, { threshold: 0.1 });
