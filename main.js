@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     bar.style.width = (window.scrollY / total * 100) + '%';
   });
 
-  // ── Custom cursor (desktop only)
+  // ── Custom cursor overlay (desktop only, keeps system cursor)
   if (window.matchMedia('(pointer: fine)').matches) {
     const cursor = document.createElement('div');
     cursor.id = 'custom-cursor';
@@ -28,13 +28,15 @@ document.addEventListener('DOMContentLoaded', () => {
     dot.id = 'cursor-dot';
     document.body.appendChild(cursor);
     document.body.appendChild(dot);
-    let mx = 0, my = 0, cx = 0, cy = 0;
+    let mx = -100, my = -100, cx = -100, cy = -100;
     window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
     const animCursor = () => {
       cx += (mx - cx) * 0.12;
       cy += (my - cy) * 0.12;
-      cursor.style.transform = `translate(${cx - 18}px, ${cy - 18}px)`;
-      dot.style.transform = `translate(${mx - 3}px, ${my - 3}px)`;
+      cursor.style.left = (cx - 18) + 'px';
+      cursor.style.top  = (cy - 18) + 'px';
+      dot.style.left = (mx - 3) + 'px';
+      dot.style.top  = (my - 3) + 'px';
       requestAnimationFrame(animCursor);
     };
     animCursor();
