@@ -1110,3 +1110,61 @@ select.form-input option { background: var(--bg3); }
   will-change: transform;
   transition: transform .3s ease, border-color .3s;
 }
+
+/* =============================================
+   RATING WIDGET
+   ============================================= */
+.rating-widget {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+.rating-stars {
+  display: flex;
+  gap: .2rem;
+}
+.star {
+  font-size: 1.6rem;
+  color: var(--border);
+  cursor: pointer;
+  transition: color .15s, transform .15s;
+  user-select: none;
+  line-height: 1;
+}
+.star.filled { color: var(--yellow); }
+.star.hover  { color: var(--orange); transform: scale(1.2); }
+.star.voted  { cursor: default; }
+.rating-info {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  flex-wrap: wrap;
+}
+.rating-avg {
+  font-family: var(--condensed);
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: var(--yellow);
+}
+.rating-total {
+  font-family: var(--mono);
+  font-size: .72rem;
+  color: var(--text-dim);
+}
+.rating-hint {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  opacity: .6;
+}
+.rating-voted {
+  font-family: var(--mono);
+  font-size: .72rem;
+  color: var(--green);
+}
