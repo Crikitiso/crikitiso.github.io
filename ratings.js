@@ -247,26 +247,35 @@ async function iniciarContadores() {
   const statsBar = document.querySelector('.stats-bar');
   if (!statsBar) return;
 
+  // Carga valoraciones primero
   const total = await getTotalValoraciones();
   const statVal = document.getElementById('stat-valoraciones');
   if (statVal) {
     statVal.dataset.target = total;
-    statVal.dataset.suffix = '';
   }
+
+  const disparar = () => {
+    // ISOs: 3
+    const isoEl = document.querySelector('.stat-num[data-target="3"]');
+    if (isoEl) animarNumero(isoEl, 3, '');
+
+    // Open Source: 100%
+    const osEl = document.querySelector('.stat-num[data-target="100"]');
+    if (osEl) animarNumero(osEl, 100, '%');
+
+    // Valoraciones: desde Supabase
+    if (statVal && total > 0) animarNumero(statVal, total, '');
+    else if (statVal) statVal.textContent = '0';
+  };
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        document.querySelectorAll('.stat-num[data-target]').forEach(el => {
-          const target = parseInt(el.dataset.target) || 0;
-          const suffix = el.dataset.suffix || '';
-          if (target > 0) animarNumero(el, target, suffix);
-          else if (el.id !== 'stat-descargas') el.textContent = '0' + suffix;
-        });
+        disparar();
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.3 });
+  }, { threshold: 0.1 });
 
   observer.observe(statsBar);
 }
