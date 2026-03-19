@@ -4,29 +4,25 @@
 
 const SUPABASE_URL = 'https://bmdfgomboisosbqylmfs.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJtZGZnb21ib2lzb3NicXlsbWZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5MzY2OTAsImV4cCI6MjA4OTUxMjY5MH0.yzYKz1OlwbY_mcv-z2X1XKcAmcDiHInmvmu7ns_aC0Y';
+const H = { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json' };
+const COL = { puntuacion: 'punctuation', opinion: 'nombre opinion', utiles: 'nombre utiles', reportada: 'nombre reportada' };
 
-const H = {
-  'apikey': SUPABASE_KEY,
-  'Authorization': `Bearer ${SUPABASE_KEY}`,
-  'Content-Type': 'application/json'
-};
-
-// Nombres reales de columnas en Supabase
-const COL = {
-  puntuacion: 'punctuation',
-  opinion:    'nombre opinion',
-  utiles:     'nombre utiles',
-  reportada:  'nombre reportada'
-};
+// Estado de filtros y paginación por ISO
+const state = {};
 
 async function getValoraciones(iso) {
   try {
-    const res = await fetch(
-      `${SUPABASE_URL}/rest/v1/valoraciones?iso=eq.${iso}&order=created_at.desc`,
-      { headers: H }
-    );
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/valoraciones?iso=eq.${iso}&order=created_at.desc`, { headers: H });
     return res.ok ? await res.json() : [];
   } catch { return []; }
+}
+
+async function getTotalValoraciones() {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/valoraciones?select=id`, { headers: { ...H, 'Prefer': 'count=exact' } });
+    const count = res.headers.get('content-range')?.split('/')[1];
+    return parseInt(count) || 0;
+  } catch { return 0; }
 }
 
 async function enviarValoracion(iso, puntuacion, opinion) {
@@ -34,31 +30,23 @@ async function enviarValoracion(iso, puntuacion, opinion) {
   body[COL.puntuacion] = puntuacion;
   body[COL.opinion] = opinion || null;
   const res = await fetch(`${SUPABASE_URL}/rest/v1/valoraciones`, {
-    method: 'POST',
-    headers: { ...H, 'Prefer': 'return=minimal' },
-    body: JSON.stringify(body)
+    method: 'POST', headers: { ...H, 'Prefer': 'return=minimal' }, body: JSON.stringify(body)
   });
   return res.ok;
 }
 
 async function marcarUtil(id, utiles_actual) {
-  const body = {};
-  body[COL.utiles] = (utiles_actual || 0) + 1;
+  const body = {}; body[COL.utiles] = (utiles_actual || 0) + 1;
   const res = await fetch(`${SUPABASE_URL}/rest/v1/valoraciones?id=eq.${id}`, {
-    method: 'PATCH',
-    headers: { ...H, 'Prefer': 'return=minimal' },
-    body: JSON.stringify(body)
+    method: 'PATCH', headers: { ...H, 'Prefer': 'return=minimal' }, body: JSON.stringify(body)
   });
   return res.ok;
 }
 
 async function reportarOpinion(id) {
-  const body = {};
-  body[COL.reportada] = true;
+  const body = {}; body[COL.reportada] = true;
   const res = await fetch(`${SUPABASE_URL}/rest/v1/valoraciones?id=eq.${id}`, {
-    method: 'PATCH',
-    headers: { ...H, 'Prefer': 'return=minimal' },
-    body: JSON.stringify(body)
+    method: 'PATCH', headers: { ...H, 'Prefer': 'return=minimal' }, body: JSON.stringify(body)
   });
   return res.ok;
 }
@@ -68,17 +56,16 @@ function renderEstrellas(n, interactive, iso, prefix) {
     const filled = i <= Math.round(n) ? 'filled' : '';
     if (interactive) {
       return `<span class="star ${filled}" data-val="${i}" data-iso="${iso}"
-        onclick="seleccionarEstrella(this, '${prefix}')"
-        onmouseenter="hoverStars(this, '${prefix}')"
-        onmouseleave="resetStars('${iso}', '${prefix}')">★</span>`;
+        onclick="seleccionarEstrella(this,'${prefix}')"
+        onmouseenter="hoverStars(this,'${prefix}')"
+        onmouseleave="resetStars('${iso}','${prefix}')">★</span>`;
     }
     return `<span class="star ${filled} static">★</span>`;
   }).join('');
 }
 
 function hoverStars(el, prefix) {
-  const iso = el.dataset.iso;
-  const val = parseInt(el.dataset.val);
+  const iso = el.dataset.iso, val = parseInt(el.dataset.val);
   document.querySelectorAll(`#${prefix}-stars-${iso} .star`).forEach(s => {
     s.classList.toggle('hover', parseInt(s.dataset.val) <= val);
   });
@@ -93,8 +80,7 @@ function resetStars(iso, prefix) {
 }
 
 function seleccionarEstrella(el, prefix) {
-  const iso = el.dataset.iso;
-  const val = parseInt(el.dataset.val);
+  const iso = el.dataset.iso, val = parseInt(el.dataset.val);
   const container = document.querySelector(`#${prefix}-stars-${iso}`);
   if (container) container.dataset.selected = val;
   document.querySelectorAll(`#${prefix}-stars-${iso} .star`).forEach(s => {
@@ -114,8 +100,7 @@ async function enviarForm(iso) {
     localStorage.setItem(`voted_${iso}`, selected);
     await renderWidget(document.querySelector(`.rating-widget[data-iso="${iso}"]`), iso);
   } else {
-    btn.textContent = 'Error, inténtalo de nuevo';
-    btn.disabled = false;
+    btn.textContent = 'Error, inténtalo de nuevo'; btn.disabled = false;
   }
 }
 
@@ -135,27 +120,83 @@ async function clickReportar(id, iso) {
   await renderWidget(document.querySelector(`.rating-widget[data-iso="${iso}"]`), iso);
 }
 
+function setFiltro(iso, estrellas) {
+  state[iso].filtro = estrellas;
+  state[iso].mostrar = 3;
+  renderOpiniones(iso);
+}
+
+function verMas(iso) {
+  state[iso].mostrar += 7;
+  renderOpiniones(iso);
+}
+
+function renderOpiniones(iso) {
+  const { data, filtro, mostrar } = state[iso];
+  const visibles = data.filter(d => !d[COL.reportada] && d[COL.opinion]);
+  const filtradas = filtro ? visibles.filter(d => d[COL.puntuacion] === filtro) : visibles;
+  const mostradas = filtradas.slice(0, mostrar);
+  const hayMas = filtradas.length > mostrar;
+
+  const filtroHtml = `
+    <div class="opiniones-filtros">
+      <span class="filtro-label">Filtrar:</span>
+      <button class="filtro-btn ${!filtro ? 'active' : ''}" onclick="setFiltro('${iso}', 0)">Todas</button>
+      ${[5,4,3,2,1].map(n => `
+        <button class="filtro-btn ${filtro === n ? 'active' : ''}" onclick="setFiltro('${iso}', ${n})">
+          ${'★'.repeat(n)}
+        </button>`).join('')}
+    </div>`;
+
+  const opinionesHtml = mostradas.map(d => `
+    <div class="opinion-card">
+      <div class="opinion-header">
+        <div class="opinion-stars">${renderEstrellas(d[COL.puntuacion]||0, false, iso, 'op'+d.id)}</div>
+        <span class="opinion-fecha">${new Date(d.created_at).toLocaleDateString('es-ES')}</span>
+      </div>
+      <p class="opinion-texto">${d[COL.opinion]}</p>
+      <div class="opinion-actions">
+        <button class="opinion-btn-util ${localStorage.getItem('util_'+d.id) ? 'used' : ''}"
+          onclick="clickUtil(${d.id}, ${d[COL.utiles]||0}, '${iso}')">
+          👍 Útil ${(d[COL.utiles]||0) > 0 ? `(${d[COL.utiles]})` : ''}
+        </button>
+        <button class="opinion-btn-report ${localStorage.getItem('report_'+d.id) ? 'used' : ''}"
+          onclick="clickReportar(${d.id}, '${iso}')">
+          ⚑ Reportar
+        </button>
+      </div>
+    </div>`).join('');
+
+  const verMasHtml = hayMas ? `
+    <button class="btn-ghost ver-mas-btn" onclick="verMas('${iso}')">
+      Ver más opiniones (${filtradas.length - mostrar} restantes) →
+    </button>` : '';
+
+  const sinOpiniones = filtradas.length === 0 ? `
+    <div class="sin-opiniones">No hay opiniones con esta puntuación aún.</div>` : '';
+
+  const container = document.getElementById(`opiniones-container-${iso}`);
+  if (container) container.innerHTML = filtroHtml + (sinOpiniones || opinionesHtml + verMasHtml);
+}
+
 async function renderWidget(widget, iso) {
   const data = await getValoraciones(iso);
   const visibles = data.filter(d => !d[COL.reportada]);
   const yaVoto = localStorage.getItem(`voted_${iso}`);
-  const media = visibles.length
-    ? visibles.reduce((a, b) => a + (b[COL.puntuacion] || 0), 0) / visibles.length
-    : 0;
+  const media = visibles.length ? visibles.reduce((a,b) => a + (b[COL.puntuacion]||0), 0) / visibles.length : 0;
 
-  // Resumen (estrellas display, no interactivo)
+  if (!state[iso]) state[iso] = { filtro: 0, mostrar: 3 };
+  state[iso].data = data;
+
   const resumen = `
     <div class="rating-resumen">
-      <div class="rating-stars-big">
-        ${renderEstrellas(media, false, iso, 'res')}
-      </div>
+      <div class="rating-stars-big">${renderEstrellas(media, false, iso, 'res')}</div>
       <div class="rating-info">
         <span class="rating-avg">${media > 0 ? media.toFixed(1) : '—'}</span>
         <span class="rating-total">${visibles.length} ${visibles.length === 1 ? 'valoración' : 'valoraciones'}</span>
       </div>
     </div>`;
 
-  // Formulario o confirmación
   const formHtml = yaVoto ? `
     <div class="rating-ya-votado">✓ Ya has dejado tu valoración. ¡Gracias!</div>` : `
     <div class="rating-form">
@@ -164,39 +205,25 @@ async function renderWidget(widget, iso) {
         ${renderEstrellas(0, true, iso, 'form')}
       </div>
       <textarea id="opinion-text-${iso}" class="form-input form-textarea rating-textarea"
-        placeholder="Cuéntanos tu experiencia con esta ISO (opcional)..."></textarea>
+        placeholder="Cuéntanos tu experiencia (opcional)..."></textarea>
       <button id="btn-enviar-${iso}" class="btn-primary" onclick="enviarForm('${iso}')">
         Publicar opinión →
       </button>
     </div>`;
 
-  // Listado de opiniones
-  const opiniones = visibles
-    .filter(d => d[COL.opinion])
-    .map(d => `
-      <div class="opinion-card">
-        <div class="opinion-header">
-          <div class="opinion-stars">${renderEstrellas(d[COL.puntuacion] || 0, false, iso, 'op'+d.id)}</div>
-          <span class="opinion-fecha">${new Date(d.created_at).toLocaleDateString('es-ES')}</span>
-        </div>
-        <p class="opinion-texto">${d[COL.opinion]}</p>
-        <div class="opinion-actions">
-          <button class="opinion-btn-util ${localStorage.getItem('util_'+d.id) ? 'used' : ''}"
-            onclick="clickUtil(${d.id}, ${d[COL.utiles]||0}, '${iso}')">
-            👍 Útil ${(d[COL.utiles] || 0) > 0 ? `(${d[COL.utiles]})` : ''}
-          </button>
-          <button class="opinion-btn-report ${localStorage.getItem('report_'+d.id) ? 'used' : ''}"
-            onclick="clickReportar(${d.id}, '${iso}')">
-            ⚑ Reportar
-          </button>
-        </div>
-      </div>`).join('');
+  const tieneOpiniones = data.filter(d => !d[COL.reportada] && d[COL.opinion]).length > 0;
 
   widget.innerHTML = `
     ${resumen}
     ${formHtml}
-    ${opiniones ? `<div class="opiniones-lista"><div class="opiniones-titulo">// opiniones de usuarios</div>${opiniones}</div>` : ''}
+    ${tieneOpiniones ? `
+      <div class="opiniones-lista">
+        <div class="opiniones-titulo">// opiniones de usuarios</div>
+        <div id="opiniones-container-${iso}"></div>
+      </div>` : ''}
   `;
+
+  if (tieneOpiniones) renderOpiniones(iso);
 }
 
 async function iniciarRatings() {
@@ -205,4 +232,23 @@ async function iniciarRatings() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', iniciarRatings);
+// Contador animado del inicio
+async function animarContadores() {
+  const total = await getTotalValoraciones();
+  const statNums = document.querySelectorAll('.stat-num');
+  statNums.forEach(el => {
+    const target = el.dataset.target === '0' ? total : parseInt(el.dataset.target);
+    let current = 0;
+    const step = Math.ceil(target / 40);
+    const interval = setInterval(() => {
+      current = Math.min(current + step, target);
+      el.textContent = current + (el.dataset.target === '100' ? '%' : '');
+      if (current >= target) clearInterval(interval);
+    }, 30);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  iniciarRatings();
+  if (document.querySelector('.stats-bar')) animarContadores();
+});
