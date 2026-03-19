@@ -232,50 +232,19 @@ async function iniciarRatings() {
   }
 }
 
-// Contador animado del inicio
-function animarNumero(el, target, suffix) {
-  let current = 0;
-  const duration = 1200;
-  const steps = 60;
-  const increment = target / steps;
-  let step = 0;
-  const interval = setInterval(() => {
-    step++;
-    current = Math.min(Math.round(increment * step), target);
-    el.textContent = current + suffix;
-    if (step >= steps) {
-      el.textContent = target + suffix;
-      clearInterval(interval);
-    }
-  }, duration / steps);
-}
-
 async function iniciarContadores() {
   const statsBar = document.querySelector('.stats-bar');
   if (!statsBar) return;
 
   const total = await getTotalValoraciones();
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        observer.unobserve(entry.target);
+  const isoEl = document.getElementById('stat-isos');
+  const osEl  = document.getElementById('stat-os');
+  const valEl = document.getElementById('stat-valoraciones');
 
-        const isoEl = document.getElementById('stat-isos');
-        const osEl  = document.getElementById('stat-os');
-        const valEl = document.getElementById('stat-valoraciones');
-
-        if (isoEl) animarNumero(isoEl, 3, '');
-        if (osEl)  animarNumero(osEl, 100, '%');
-        if (valEl) {
-          if (total > 0) animarNumero(valEl, total, '');
-          else valEl.textContent = '0';
-        }
-      }
-    });
-  }, { threshold: 0.1 });
-
-  observer.observe(statsBar);
+  if (isoEl) isoEl.textContent = '3';
+  if (osEl)  osEl.textContent  = '100%';
+  if (valEl) valEl.textContent = total > 0 ? total : '0';
 }
 
 document.addEventListener('DOMContentLoaded', () => {
