@@ -1031,3 +1031,82 @@ select.form-input option { background: var(--bg3); }
 @media (max-width: 480px) {
   .foro-topics { grid-template-columns: 1fr; }
 }
+
+/* =============================================
+   SCROLL PROGRESS BAR
+   ============================================= */
+#scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--orange), var(--yellow));
+  z-index: 9999;
+  transition: width .1s linear;
+  box-shadow: 0 0 8px rgba(249,115,22,.6);
+}
+
+/* =============================================
+   CUSTOM CURSOR
+   ============================================= */
+@media (pointer: fine) {
+  body { cursor: none; }
+  a, button { cursor: none; }
+}
+#custom-cursor {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1.5px solid var(--orange);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transition: transform .08s ease, width .2s, height .2s, border-color .2s;
+  mix-blend-mode: difference;
+}
+#cursor-dot {
+  position: fixed;
+  width: 6px; height: 6px;
+  background: var(--orange);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+}
+#custom-cursor.hover {
+  width: 52px; height: 52px;
+  border-color: var(--yellow);
+  background: rgba(249,115,22,.08);
+}
+
+/* =============================================
+   SCROLL ANIMATIONS
+   ============================================= */
+.scroll-hidden {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.scroll-hidden.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =============================================
+   PARTICLE CANVAS
+   ============================================= */
+#hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* =============================================
+   CARD TILT — preserve 3d
+   ============================================= */
+.iso-card, .download-card, .team-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform .3s ease, border-color .3s;
+}
