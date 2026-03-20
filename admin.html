@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin — Crikitiso</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow:wght@400;600;800&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet"/>
+  <meta name="robots" content="noindex, nofollow"/>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-logo">
+      <img src="logo.png" alt="Crikitiso Logo" class="logo-img"/>
+      <span class="nav-brand">CRIKITISO</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="descargas.html">Descargas</a></li>
+      <li><a href="admin.html" class="active" style="color:var(--orange)">Admin</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- LOGIN -->
+  <div class="admin-login" id="adminLogin">
+    <div class="admin-login-box">
+      <div class="terminal-tag">&gt;_ /admin</div>
+      <h1 style="font-family:var(--condensed);font-size:2rem;margin:.8rem 0">Panel de <span class="accent">Administración</span></h1>
+      <p style="color:var(--text-dim);font-size:.9rem;margin-bottom:1.5rem">Acceso restringido al equipo de Crikitiso.</p>
+      <div class="form-group">
+        <label class="form-label">Contraseña</label>
+        <input type="password" class="form-input" id="adminPass" placeholder="••••••••" onkeydown="if(event.key==='Enter') loginAdmin()"/>
+      </div>
+      <button class="btn-primary" onclick="loginAdmin()" style="width:100%;margin-top:.5rem">Entrar →</button>
+      <div id="loginError" style="display:none;color:var(--red);font-family:var(--mono);font-size:.78rem;margin-top:.8rem">✗ Contraseña incorrecta</div>
+    </div>
+  </div>
+
+  <!-- PANEL -->
+  <div class="admin-panel" id="adminPanel" style="display:none">
+    <section class="page-hero">
+      <div class="scanlines"></div>
+      <div class="hero-bg-grid"></div>
+      <div class="page-hero-content">
+        <span class="terminal-tag">&gt;_ /admin</span>
+        <h1>Panel de <span class="accent">Admin</span></h1>
+        <p>Gestiona las opiniones de todas las ISOs.</p>
+      </div>
+    </section>
+
+    <section class="admin-section">
+
+      <!-- STATS -->
+      <div class="admin-stats" id="adminStats">
+        <div class="admin-stat-card">
+          <div class="admin-stat-num" id="statTotal">—</div>
+          <div class="admin-stat-label">Total opiniones</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-num" id="statReportadas" style="color:var(--red)">—</div>
+          <div class="admin-stat-label">Reportadas</div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-num" id="statVisibles" style="color:var(--green)">—</div>
+          <div class="admin-stat-label">Visibles</div>
+        </div>
+      </div>
+
+      <!-- FILTROS -->
+      <div class="admin-filtros">
+        <button class="filtro-btn active" onclick="setAdminFiltro('todas', this)">Todas</button>
+        <button class="filtro-btn" onclick="setAdminFiltro('reportadas', this)" style="color:var(--red);border-color:var(--red)">⚑ Reportadas</button>
+        <button class="filtro-btn" onclick="setAdminFiltro('gaming', this)">🎮 Gaming</button>
+        <button class="filtro-btn" onclick="setAdminFiltro('edicion', this)">🎨 Edición</button>
+        <button class="filtro-btn" onclick="setAdminFiltro('dev', this)">💻 Dev</button>
+      </div>
+
+      <div id="adminOpiniones" class="admin-opiniones">
+        <div class="admin-loading">Cargando opiniones...</div>
+      </div>
+
+    </section>
+  </div>
+
+  <script src="main.js"></script>
+  <script>
+    const SUPABASE_URL = 'https://bmdfgomboisosbqylmfs.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJtZGZnb21ib2lzb3NicXlsbWZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5MzY2OTAsImV4cCI6MjA4OTUxMjY5MH0.yzYKz1OlwbY_mcv-z2X1XKcAmcDiHInmvmu7ns_aC0Y';
+    const H = { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json' };
+    const COL = { puntuacion: 'punctuation', opinion: 'nombre opinion', utiles: 'nombre utiles', reportada: 'nombre reportada' };
+    const PASS = 'Crikitiso@Proyecto1';
+
+    let allData = [];
+    let filtroActual = 'todas';
+
+    function loginAdmin() {
+      const pass = document.getElementById('adminPass').value;
+      if (pass === PASS) {
+        sessionStorage.setItem('crikitiso_admin', '1');
+        document.getElementById('adminLogin').style.display = 'none';
+        document.getElementById('adminPanel').style.display = 'block';
+        cargarTodo();
+      } else {
+        document.getElementById('loginError').style.display = 'block';
+      }
+    }
+
+    async function cargarTodo() {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/valoraciones?order=created_at.desc`, { headers: H });
+      allData = res.ok ? await res.json() : [];
+      actualizarStats();
+      renderAdminOpiniones();
+    }
+
+    function actualizarStats() {
+      const reportadas = allData.filter(d => d[COL.reportada]).length;
+      document.getElementById('statTotal').textContent = allData.length;
+      document.getElementById('statReportadas').textContent = reportadas;
+      document.getElementById('statVisibles').textContent = allData.length - reportadas;
+    }
+
+    function setAdminFiltro(filtro, btn) {
+      filtroActual = filtro;
+      document.querySelectorAll('.admin-filtros .filtro-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderAdminOpiniones();
+    }
+
+    function renderAdminOpiniones() {
+      let datos = [...allData];
+      if (filtroActual === 'reportadas') datos = datos.filter(d => d[COL.reportada]);
+      else if (filtroActual !== 'todas') datos = datos.filter(d => d.iso === filtroActual);
+
+      const container = document.getElementById('adminOpiniones');
+
+      if (!datos.length) {
+        container.innerHTML = '<div class="admin-loading">No hay opiniones con este filtro.</div>';
+        return;
+      }
+
+      container.innerHTML = datos.map(d => {
+        const stars = [1,2,3,4,5].map(i =>
+          `<span style="color:${i <= (d[COL.puntuacion]||0) ? '#fbbf24' : '#333'}">★</span>`
+        ).join('');
+        const isReportada = d[COL.reportada];
+        const isoEmoji = {gaming:'🎮', edicion:'🎨', dev:'💻'}[d.iso] || '🐧';
+
+        return `
+          <div class="admin-opinion-card ${isReportada ? 'reportada' : ''}">
+            <div class="admin-opinion-header">
+              <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap">
+                <span style="font-size:1.2rem">${isoEmoji}</span>
+                <span style="font-family:var(--mono);font-size:.72rem;color:var(--orange);text-transform:uppercase">${d.iso}</span>
+                <div>${stars}</div>
+                ${isReportada ? '<span class="admin-badge-report">⚑ REPORTADA</span>' : ''}
+              </div>
+              <span style="font-family:var(--mono);font-size:.68rem;color:var(--text-dim)">
+                ${new Date(d.created_at).toLocaleString('es-ES')} · ID: ${d.id}
+              </span>
+            </div>
+            ${d[COL.opinion] ? `<p class="admin-opinion-texto">${d[COL.opinion]}</p>` : '<p style="color:var(--text-dim);font-style:italic;font-size:.82rem">Sin texto de opinión</p>'}
+            <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.8rem">
+              ${isReportada ? `
+                <button class="admin-btn admin-btn-green" onclick="restaurarOpinion(${d.id})">✓ Restaurar</button>
+                <button class="admin-btn admin-btn-red" onclick="borrarOpinion(${d.id})">🗑 Borrar definitivamente</button>
+              ` : `
+                <button class="admin-btn admin-btn-red" onclick="borrarOpinion(${d.id})">🗑 Borrar</button>
+              `}
+            </div>
+          </div>`;
+      }).join('');
+    }
+
+    async function borrarOpinion(id) {
+      if (!confirm('¿Borrar esta opinión definitivamente? No se puede deshacer.')) return;
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/valoraciones?id=eq.${id}`, {
+        method: 'DELETE', headers: H
+      });
+      if (res.ok) {
+        allData = allData.filter(d => d.id !== id);
+        actualizarStats();
+        renderAdminOpiniones();
+      }
+    }
+
+    async function restaurarOpinion(id) {
+      const body = {}; body[COL.reportada] = false;
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/valoraciones?id=eq.${id}`, {
+        method: 'PATCH', headers: { ...H, 'Prefer': 'return=minimal' },
+        body: JSON.stringify(body)
+      });
+      if (res.ok) {
+        const op = allData.find(d => d.id === id);
+        if (op) op[COL.reportada] = false;
+        actualizarStats();
+        renderAdminOpiniones();
+      }
+    }
+
+    // Comprobar si ya habia sesion
+    if (sessionStorage.getItem('crikitiso_admin') === '1') {
+      document.getElementById('adminLogin').style.display = 'none';
+      document.getElementById('adminPanel').style.display = 'block';
+      cargarTodo();
+    }
+  </script>
+</body>
+</html>

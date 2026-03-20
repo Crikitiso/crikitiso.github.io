@@ -114,9 +114,28 @@ async function clickUtil(id, utiles, iso) {
 async function clickReportar(id, iso) {
   if (localStorage.getItem(`report_${id}`)) { alert('Ya has reportado esta opinión.'); return; }
   if (!confirm('¿Reportar esta opinión como inapropiada?')) return;
+  const op = (await getValoraciones(iso)).find(d => d.id === id);
   await reportarOpinion(id);
   localStorage.setItem(`report_${id}`, '1');
-  alert('Opinión reportada. El equipo la revisará.');
+  // Notificar al admin por email
+  try {
+    await fetch('https://formspree.io/f/mreyordj', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        asunto: `[REPORTE] Opinion en ISO ${iso} — ID ${id}`,
+        mensaje: `Se ha reportado una opinion en la ISO ${iso}.
+
+Texto: ${op?.[COL.opinion] || '(sin texto)'}
+Puntuacion: ${op?.[COL.puntuacion] || '?'} estrellas
+ID en Supabase: ${id}
+
+Revisa el panel de admin: https://crikitiso.github.io/admin.html`,
+        email: 'crikitiso@gmail.com'
+      })
+    });
+  } catch {}
+  alert('Opinion reportada. El equipo la revisara en breve.');
   await renderWidget(document.querySelector(`.rating-widget[data-iso="${iso}"]`), iso);
 }
 
