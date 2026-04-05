@@ -1498,3 +1498,72 @@ body:hover #cursor-dot { opacity: 1; }
   border-color: rgba(74,222,128,.4);
 }
 .admin-btn-green:hover { background: rgba(74,222,128,.12); }
+
+/* =============================================
+   OSS NOTICE (descargas)
+   ============================================= */
+.oss-notice {
+  background: rgba(74,222,128,.05);
+  border-top: 1px solid rgba(74,222,128,.2);
+  border-bottom: 1px solid rgba(74,222,128,.2);
+  padding: 1rem 6vw;
+}
+.oss-notice-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.oss-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: .1rem; }
+.oss-notice-inner strong {
+  display: block;
+  font-family: var(--condensed);
+  font-size: 1rem;
+  color: var(--green);
+  margin-bottom: .3rem;
+}
+.oss-notice-inner p {
+  font-size: .82rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+/* =============================================
+   WHY LINUX SECTION
+   ============================================= */
+.why-section {
+  padding: 100px 6vw;
+  background: var(--bg2);
+}
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.why-item {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.8rem;
+  transition: border-color .3s;
+}
+.why-item:hover { border-color: var(--orange); }
+.why-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+.why-item h4 {
+  font-family: var(--condensed);
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: .6rem;
+}
+.why-item p {
+  font-size: .85rem;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+@media (max-width: 900px) {
+  .why-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .why-grid { grid-template-columns: 1fr; }
+}
