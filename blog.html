@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog — Crikitiso | Guías y artículos sobre Linux</title>
+  <meta name="description" content="Guías, tutoriales y artículos sobre Linux, gaming en Linux, edición multimedia y desarrollo de software. Aprende a sacar el máximo partido a tu sistema operativo libre."/>
+  <meta name="google-site-verification" content="1vK_hb5o0Uh3LMJRjOKTfBsk-J0wfyWopUN7p2XhImg"/>
+  <meta property="og:title" content="Blog — Crikitiso"/>
+  <meta property="og:description" content="Guías y artículos sobre Linux para gaming, edición y programación."/>
+  <meta property="og:image" content="https://crikitiso.github.io/logo.png"/>
+  <meta property="og:url" content="https://crikitiso.github.io/blog.html"/>
+  <meta property="og:type" content="website"/>
+  <link rel="icon" type="image/png" href="logo.png"/>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow:wght@400;600;800&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet"/>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1942519662732657" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-logo">
+      <img src="logo.png" alt="Crikitiso Logo" class="logo-img"/>
+      <span class="nav-brand">CRIKITISO</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="descargas.html">Descargas</a></li>
+      <li><a href="nosotros.html">Sobre Nosotros</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="foro.html">Foro</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="scanlines"></div>
+    <div class="hero-bg-grid"></div>
+    <div class="page-hero-content">
+      <span class="terminal-tag">&gt;_ /blog</span>
+      <h1>Blog y <span class="accent">guías</span></h1>
+      <p>Artículos, tutoriales y guías sobre Linux, gaming, edición y programación escritos por el equipo de Crikitiso.</p>
+    </div>
+  </section>
+
+  <section class="blog-section">
+    <div class="blog-grid">
+
+      <!-- ARTICULO 1 -->
+      <article class="blog-card featured-blog" id="gaming-linux">
+        <div class="blog-tag-cat">🎮 Gaming</div>
+        <h2 class="blog-title">Gaming en Linux en 2025: todo lo que necesitas saber</h2>
+        <div class="blog-meta">Por Iker Fernández · Marzo 2026 · 8 min de lectura</div>
+        <div class="blog-content">
+          <p>Durante años, Linux fue considerado incompatible con el gaming serio. Los jugadores que querían rendimiento máximo no tenían otra opción que Windows. Eso ha cambiado radicalmente en los últimos años, y hoy en día jugar en Linux no solo es posible, sino que en muchos casos ofrece un rendimiento comparable o incluso superior al de Windows.</p>
+
+          <h3>¿Por qué Linux y gaming ahora funcionan juntos?</h3>
+          <p>El cambio más importante llegó con <strong>Proton</strong>, la capa de compatibilidad desarrollada por Valve que permite ejecutar juegos de Windows directamente en Linux. Proton está basado en Wine, pero con modificaciones específicas para gaming que incluyen soporte para DirectX 11 y 12, optimizaciones de rendimiento y compatibilidad con sistemas de protección antitrampas.</p>
+          <p>Valve integró Proton directamente en Steam, lo que significa que la mayoría de juegos de tu biblioteca de Steam funcionan en Linux sin ninguna configuración adicional. Según ProtonDB, la base de datos comunitaria de compatibilidad, más del 75% de los juegos más populares de Steam funcionan correctamente en Linux.</p>
+
+          <h3>Drivers de GPU: el factor clave</h3>
+          <p>El rendimiento en gaming depende enormemente de los drivers de la tarjeta gráfica. En Linux, la situación varía según el fabricante:</p>
+          <p><strong>AMD:</strong> Los drivers de AMD en Linux (Mesa/AMDGPU) son considerados de los mejores disponibles. Al ser de código abierto e integrados directamente en el kernel de Linux, ofrecen excelente compatibilidad y en algunos títulos superan el rendimiento de los drivers de Windows.</p>
+          <p><strong>NVIDIA:</strong> Los drivers propietarios de NVIDIA para Linux han mejorado significativamente. La versión 525 y posteriores incluyen soporte mejorado para Wayland y mejor rendimiento general. Nuestra ISO de Gaming incluye los drivers NVIDIA preinstalados y configurados.</p>
+          <p><strong>Intel:</strong> Las GPUs integradas de Intel tienen soporte excelente en Linux a través de los drivers de código abierto Intel i915, ideales para gaming casual y juegos menos exigentes.</p>
+
+          <h3>Herramientas esenciales para gaming en Linux</h3>
+          <p><strong>Steam y Proton:</strong> La plataforma principal. Activa Proton desde Configuración → Steam Play para todos los juegos y tendrás acceso a tu biblioteca completa.</p>
+          <p><strong>Lutris:</strong> Gestor de juegos que soporta múltiples fuentes: GOG, Epic Games, Battle.net, juegos standalone y emuladores. Permite configurar runners específicos (Wine, Proton, emuladores) para cada juego.</p>
+          <p><strong>Proton-GE:</strong> Una versión de Proton mantenida por la comunidad (GloriousEggroll) que incluye parches adicionales y compatibilidad mejorada con juegos que tienen problemas con el Proton oficial.</p>
+          <p><strong>GameMode:</strong> Herramienta de Feral Interactive que optimiza automáticamente el sistema cuando se lanza un juego: ajusta el governor de la CPU, prioridad de procesos y otros parámetros del sistema.</p>
+          <p><strong>MangoHud:</strong> Overlay en tiempo real que muestra FPS, uso de CPU/GPU, temperatura, VRAM y RAM mientras juegas. Esencial para monitorizar el rendimiento.</p>
+
+          <h3>Crikitiso Gaming: todo preconfigurado</h3>
+          <p>Nuestra ISO de Gaming incluye todas estas herramientas preinstaladas y configuradas. El kernel Zen de baja latencia está optimizado específicamente para reducir el input lag y mejorar la respuesta del sistema durante sesiones de juego intensas. No necesitas pasar horas configurando: arranca, instala tus juegos y empieza a jugar.</p>
+        </div>
+        <a href="descargas.html#gaming" class="btn-primary" style="display:inline-block;margin-top:1.5rem">Descargar Crikitiso Gaming →</a>
+      </article>
+
+      <!-- ARTICULO 2 -->
+      <article class="blog-card" id="edicion-linux">
+        <div class="blog-tag-cat">🎨 Edición</div>
+        <h2 class="blog-title">Edición de vídeo y diseño gráfico en Linux: guía completa de software</h2>
+        <div class="blog-meta">Por Cristian Albizu · Marzo 2026 · 7 min de lectura</div>
+        <div class="blog-content">
+          <p>Linux cuenta con un ecosistema de software creativo maduro y potente. Aunque el mercado profesional sigue dominado por aplicaciones como Adobe Premiere o Photoshop, las alternativas de código abierto disponibles en Linux han alcanzado un nivel de madurez que las hace perfectamente válidas para uso profesional.</p>
+
+          <h3>Edición de vídeo</h3>
+          <p><strong>Kdenlive:</strong> Editor de vídeo no lineal basado en el framework MLT. Soporta múltiples pistas de vídeo y audio, efectos en tiempo real, corrección de color, títulos animados y exportación a múltiples formatos. Es la alternativa más completa a Premiere en Linux y su curva de aprendizaje es razonablemente baja para usuarios con experiencia en edición.</p>
+          <p><strong>DaVinci Resolve:</strong> La versión gratuita de DaVinci Resolve está disponible para Linux y es completamente funcional para edición profesional. Incluye herramientas de corrección de color de nivel broadcast, Fusion para efectos visuales y Fairlight para edición de audio. Requiere una GPU compatible y nuestra ISO de Edición está preconfigurada para maximizar su compatibilidad.</p>
+          <p><strong>Blender:</strong> Aunque principalmente conocido como software de modelado 3D, el editor de vídeo de Blender (Video Sequence Editor) es una herramienta potente para montajes sencillos y composición. Su verdadero valor en producción es para motion graphics y efectos visuales integrados con escenas 3D.</p>
+
+          <h3>Diseño gráfico</h3>
+          <p><strong>GIMP:</strong> El editor de imágenes por referencia en Linux. Soporta capas, máscaras, filtros avanzados, scripts y plugins. Su interfaz puede resultar diferente a Photoshop, pero sus capacidades son comparables para retoque fotográfico y composición digital. La versión 3.0 introduce soporte nativo para alta profundidad de color y mejoras significativas en la interfaz.</p>
+          <p><strong>Inkscape:</strong> Editor de gráficos vectoriales compatible con el estándar SVG. Ideal para ilustración, diseño de logos, iconografía e infografías. Soporta formatos de importación y exportación amplios incluyendo AI, PDF, DXF y EPS.</p>
+          <p><strong>Krita:</strong> Aplicación de pintura digital diseñada específicamente para artistas. Cuenta con una amplia biblioteca de pinceles, soporte para tabletas gráficas, modos de mezcla avanzados y herramientas de animación frame a frame. Es la opción preferida por ilustradores y concept artists en Linux.</p>
+
+          <h3>Codecs y formatos</h3>
+          <p>Una de las ventajas de Linux para edición es el soporte nativo de codecs. Nuestra ISO de Edición incluye FFmpeg completo con soporte para H.264, H.265/HEVC, AV1, ProRes, DNxHD y prácticamente cualquier formato de vídeo o audio que puedas necesitar. No hay restricciones de licencias que limiten la reproducción o edición de ningún formato estándar.</p>
+        </div>
+        <a href="descargas.html#edicion" class="btn-primary" style="display:inline-block;margin-top:1.5rem">Descargar Crikitiso Edición →</a>
+      </article>
+
+      <!-- ARTICULO 3 -->
+      <article class="blog-card" id="dev-linux">
+        <div class="blog-tag-cat">💻 Desarrollo</div>
+        <h2 class="blog-title">Por qué Linux es el mejor sistema operativo para programadores</h2>
+        <div class="blog-meta">Por Itá Maciel · Marzo 2026 · 6 min de lectura</div>
+        <div class="blog-content">
+          <p>No es casualidad que la gran mayoría de servidores del mundo corran Linux, que los desarrolladores de las principales empresas tecnológicas usen Linux como sistema principal, o que herramientas como Docker, Kubernetes o la mayor parte del ecosistema de desarrollo moderno estén diseñadas pensando en Linux. Linux y programación van de la mano por razones muy concretas.</p>
+
+          <h3>La terminal: el superpoder de Linux</h3>
+          <p>La terminal de Linux (Bash, Zsh, Fish) es incomparablemente más potente que el símbolo del sistema o PowerShell de Windows. Los gestores de paquetes como apt permiten instalar cualquier herramienta de desarrollo con un único comando. La integración entre herramientas mediante pipes, scripts y automatización es natural y fluida. Nuestra ISO de Programación incluye Zsh con Oh My Zsh, que añade autocompletado inteligente, historial mejorado y una experiencia de terminal significativamente mejor.</p>
+
+          <h3>Docker y contenedores</h3>
+          <p>Docker nació en Linux y su integración es perfecta. En Windows, Docker funciona a través de una máquina virtual WSL2, lo que añade overhead y puede causar problemas de rendimiento y compatibilidad. En Linux, los contenedores se ejecutan directamente sobre el kernel sin virtualización, con menor consumo de recursos y mayor velocidad. Nuestra ISO incluye Docker preinstalado y configurado, listo para usar desde el primer arranque.</p>
+
+          <h3>Git y control de versiones</h3>
+          <p>Git fue creado por Linus Torvalds para gestionar el desarrollo del kernel de Linux. Su integración en el ecosistema Linux es natural. Combinado con herramientas como GitHub CLI, GitLab Runner o herramientas de CI/CD, la experiencia de desarrollo colaborativo en Linux es fluida y sin fricciones.</p>
+
+          <h3>Runtimes y entornos de desarrollo</h3>
+          <p>Nuestra ISO de Programación incluye preinstalados: Node.js con npm y nvm para gestión de versiones, Python 3 con pip, Java JDK, y las herramientas de compilación esenciales (gcc, make, cmake). VS Code está preinstalado con extensiones básicas de productividad. Todo el entorno está listo para empezar a programar en menos de 15 minutos desde la instalación.</p>
+
+          <h3>Seguridad y estabilidad</h3>
+          <p>Linux tiene un modelo de permisos robusto que hace prácticamente imposible que un proceso comprometido afecte al sistema completo. La separación entre usuario y root, combinada con herramientas como AppArmor o SELinux, proporciona un nivel de seguridad que ningún sistema operativo propietario puede igualar para entornos de desarrollo.</p>
+        </div>
+        <a href="descargas.html#dev" class="btn-primary" style="display:inline-block;margin-top:1.5rem">Descargar Crikitiso Dev →</a>
+      </article>
+
+      <!-- ARTICULO 4 -->
+      <article class="blog-card" id="cubic-guide">
+        <div class="blog-tag-cat">🛠️ Tutoriales</div>
+        <h2 class="blog-title">Qué es Cubic y cómo usamos esta herramienta para crear nuestras ISOs</h2>
+        <div class="blog-meta">Por el equipo Crikitiso · Marzo 2026 · 5 min de lectura</div>
+        <div class="blog-content">
+          <p>Una de las preguntas más frecuentes que recibimos es cómo creamos nuestras distribuciones personalizadas. La respuesta es <strong>Cubic</strong> (Custom Ubuntu ISO Creator), una herramienta de código abierto que permite modificar ISOs de distribuciones basadas en Ubuntu de forma gráfica e intuitiva.</p>
+
+          <h3>¿Qué es Cubic?</h3>
+          <p>Cubic es una aplicación GTK para Ubuntu y sus derivados que proporciona un asistente gráfico para personalizar ISOs de instalación. Fue desarrollada por PJ Singh y está publicada bajo licencia GPL en GitHub. Permite a cualquier persona, desde usuarios avanzados hasta desarrolladores, crear distribuciones personalizadas sin necesidad de conocimientos profundos de empaquetado de distribuciones Linux.</p>
+
+          <h3>Proceso de creación de una ISO con Cubic</h3>
+          <p>El proceso comienza importando una ISO base, en nuestro caso Pop!_OS 22.04 LTS o Ubuntu Desktop. Cubic monta el sistema de archivos de la ISO en un entorno chroot, que es básicamente un sistema Linux virtual aislado dentro de tu propio sistema.</p>
+          <p>Dentro de este entorno chroot, tienes acceso completo a una terminal donde puedes ejecutar cualquier comando como si estuvieras en el sistema que estás construyendo. Esto significa que puedes instalar paquetes con apt, eliminar software innecesario, modificar archivos de configuración, añadir scripts de inicio y personalizar cualquier aspecto del sistema.</p>
+          <p>Para nuestra ISO de Gaming, por ejemplo, instalamos el kernel Zen, los drivers de GPU, Steam, Lutris, GameMode y MangoHud directamente en el entorno chroot. Cualquier paquete que instalemos aquí estará disponible en el sistema final sin necesidad de conexión a internet durante la instalación.</p>
+
+          <h3>Personalización del instalador</h3>
+          <p>Cubic también permite personalizar los archivos del instalador: la imagen de fondo, el nombre de la distribución, el hostname por defecto y otros parámetros. Esto es lo que hace que nuestras ISOs aparezcan como "Crikitiso Gaming" en lugar del nombre de la distribución base durante la instalación.</p>
+
+          <h3>Generación de la ISO final</h3>
+          <p>Una vez finalizadas todas las modificaciones, Cubic comprime el sistema de archivos y genera la ISO final lista para ser flasheada en un USB o instalada en una máquina virtual. El proceso completo, dependiendo de la cantidad de software instalado y la velocidad del equipo, tarda entre 30 minutos y 2 horas.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="logo.png" alt="Crikitiso" class="footer-logo"/>
+        <span>CRIKITISO</span>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Inicio</a>
+        <a href="descargas.html">Descargas</a>
+        <a href="nosotros.html">Sobre Nosotros</a>
+        <a href="blog.html">Blog</a>
+        <a href="faq.html">FAQ</a>
+        <a href="foro.html">Foro</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+      <div class="footer-copy">
+        <span class="t-prompt">&gt;_</span> © 2026 Crikitiso S.L. — <a href="aviso-legal.html" class="footer-legal">Aviso Legal</a> · crikitiso@gmail.com
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script src="cookies.js"></script>
+  <!-- COOKIE BANNER -->
+  <div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-inner">
+      <div class="cookie-text">
+        <span class="cookie-icon">🍪</span>
+        <div>
+          <strong>Esta web usa cookies técnicas</strong>
+          <p>Usamos cookies estrictamente necesarias. <a href="aviso-legal.html" class="cookie-link">Más info</a></p>
+        </div>
+      </div>
+      <div class="cookie-actions">
+        <button class="btn-ghost cookie-btn" onclick="rejectCookies()">Solo necesarias</button>
+        <button class="btn-primary cookie-btn" onclick="acceptCookies()">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
