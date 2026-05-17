@@ -16,9 +16,8 @@
 
 | ISO | Base | Orientada a |
 |-----|------|-------------|
-| 🎮 Crikitiso Gaming | Pop!_OS 22.04 LTS | Gaming, drivers GPU, Steam/Lutris |
-| 🎨 Crikitiso Edición | Ubuntu Desktop | Diseño gráfico, edición de vídeo |
-| 💻 Crikitiso Dev | Pop!_OS 22.04 LTS | Desarrollo de software |
+| 🎮 Crikitiso Gaming | Pop!_OS 24.04 LTS | Gaming, drivers GPU, Steam/Lutris |
+| 🎨 Crikitiso Edición | Ubuntu Desktop 24.04 LTS | Diseño gráfico, edición de vídeo |
 
 ---
 
@@ -44,9 +43,9 @@
 
 | Nombre | Rol |
 |--------|-----|
-| **Cristian Albizu** | ISO Edición · Documentación · Cronograma |
-| **Iker Fernández** | ISO Gaming · Web · Infraestructura |
-| **Itá Maciel** | ISO Dev · Licencias · Modelos de producto |
+| **Cristian Albizu** | ISO Edición · Documentación · Memoria · Cronograma |
+| **Iker Fernández** | ISO Gaming · Web · Infraestructura · Documentación |
+| **Itá Maciel** | Licencias · Memoria · Presentación · Investigación |
 
 ---
 
