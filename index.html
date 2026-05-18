@@ -19,6 +19,105 @@
   <meta name="twitter:description" content="Distribuciones Linux personalizadas para gaming, edición y programación. Descarga gratis."/>
   <meta name="twitter:image" content="https://crikitiso.github.io/logo.png"/>
   <meta name="google-site-verification" content="1vK_hb5o0Uh3LMJRjOKTfBsk-J0wfyWopUN7p2XhImg"/>
+  <style>
+    /* ── Animaciones hero mejoradas ── */
+    .hero-title {
+      animation: glitchIn .8s ease forwards;
+    }
+    @keyframes glitchIn {
+      0%   { opacity:0; transform: translateX(-20px) skewX(-5deg); filter: blur(4px); }
+      60%  { transform: translateX(4px) skewX(1deg); filter: blur(0); }
+      100% { opacity:1; transform: translateX(0) skewX(0); }
+    }
+    /* Glow pulsante en .accent */
+    .accent {
+      animation: accentGlow 2.5s ease-in-out infinite;
+    }
+    @keyframes accentGlow {
+      0%, 100% { text-shadow: 0 0 8px rgba(249,115,22,0.4); }
+      50%       { text-shadow: 0 0 22px rgba(249,115,22,0.9), 0 0 40px rgba(249,115,22,0.3); }
+    }
+    /* Terminal window: líneas aparecen una a una */
+    .t-line {
+      opacity: 0;
+      animation: fadeInLine .3s ease forwards;
+    }
+    .t-line:nth-child(1)  { animation-delay: .5s; }
+    .t-line:nth-child(2)  { animation-delay: .9s; }
+    .t-line:nth-child(3)  { animation-delay: 1.3s; }
+    .t-line:nth-child(4)  { animation-delay: 1.7s; }
+    .t-line:nth-child(5)  { animation-delay: 2.0s; }
+    .t-line:nth-child(6)  { animation-delay: 2.3s; }
+    .t-line:nth-child(7)  { animation-delay: 2.6s; }
+    .t-line:nth-child(8)  { animation-delay: 2.9s; }
+    .t-line:nth-child(9)  { animation-delay: 3.2s; }
+    @keyframes fadeInLine {
+      from { opacity:0; transform: translateX(-8px); }
+      to   { opacity:1; transform: translateX(0); }
+    }
+    /* Stat numbers: flip-in */
+    .stat-num {
+      display: inline-block;
+      animation: flipIn .6s cubic-bezier(.34,1.56,.64,1) forwards;
+    }
+    @keyframes flipIn {
+      from { transform: rotateX(90deg) scale(.8); opacity:0; }
+      to   { transform: rotateX(0) scale(1); opacity:1; }
+    }
+    /* Cards: float suave en hover */
+    .iso-card {
+      transition: transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s ease !important;
+    }
+    .iso-card:hover {
+      transform: translateY(-10px) scale(1.02) !important;
+    }
+    /* Glow de las cards al hover */
+    .glow-red   { transition: opacity .3s; }
+    .glow-orange{ transition: opacity .3s; }
+    .glow-green { transition: opacity .3s; }
+    .iso-card:hover .card-glow { opacity: 1 !important; }
+    /* why-items: entrada escalonada */
+    .why-item {
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .why-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(249,115,22,0.15);
+    }
+    /* Steps: pulso en números */
+    .step-num {
+      animation: stepPulse 3s ease-in-out infinite;
+    }
+    @keyframes stepPulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: .6; text-shadow: 0 0 20px var(--orange); }
+    }
+    .step-arrow {
+      animation: arrowBounce 1.4s ease-in-out infinite;
+    }
+    @keyframes arrowBounce {
+      0%, 100% { transform: translateX(0); opacity: .6; }
+      50%       { transform: translateX(6px); opacity: 1; }
+    }
+    /* Shimmer en botones primarios */
+    .btn-primary {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 55%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+      animation: shimmer 2.8s ease-in-out infinite;
+    }
+    @keyframes shimmer {
+      0%   { left: -100%; }
+      55%  { left: 150%; }
+      100% { left: 150%; }
+    }
+  </style>
 </head>
 <body>
 

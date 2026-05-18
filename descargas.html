@@ -19,6 +19,124 @@
   <meta name="twitter:description" content="Descarga nuestras ISOs de Linux personalizadas para gaming, edición y desarrollo."/>
   <meta name="twitter:image" content="https://crikitiso.github.io/logo.png"/>
   <meta name="google-site-verification" content="1vK_hb5o0Uh3LMJRjOKTfBsk-J0wfyWopUN7p2XhImg"/>
+  <style>
+    /* ── Banner animado ── */
+    .crikitiso-ad-banner {
+      max-width: 1100px;
+      margin: 2.5rem auto 0;
+      padding: 0 1.5rem;
+    }
+    .crikitiso-ad-inner {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      background: linear-gradient(135deg, #1a1a1a 60%, #2a1500 100%);
+      border: 1px solid var(--orange);
+      border-radius: 16px;
+      padding: 1.8rem 2.5rem;
+      box-shadow: 0 0 40px rgba(249,115,22,0.15), inset 0 0 60px rgba(249,115,22,0.03);
+      animation: bannerPulse 3s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+    }
+    .crikitiso-ad-inner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(transparent 0deg, rgba(249,115,22,0.04) 60deg, transparent 120deg);
+      animation: rotateSweep 8s linear infinite;
+    }
+    @keyframes rotateSweep {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    @keyframes bannerPulse {
+      0%, 100% { box-shadow: 0 0 30px rgba(249,115,22,0.12), inset 0 0 60px rgba(249,115,22,0.03); }
+      50%       { box-shadow: 0 0 55px rgba(249,115,22,0.28), inset 0 0 60px rgba(249,115,22,0.06); }
+    }
+    .crikitiso-ad-gif {
+      width: 130px;
+      height: 130px;
+      border-radius: 12px;
+      border: 2px solid rgba(249,115,22,0.4);
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 0 12px rgba(249,115,22,0.5));
+    }
+    .crikitiso-ad-text {
+      position: relative;
+      z-index: 1;
+    }
+    .crikitiso-ad-tag {
+      font-family: var(--mono);
+      font-size: .72rem;
+      color: var(--orange);
+      letter-spacing: .1em;
+      margin-bottom: .5rem;
+    }
+    .crikitiso-ad-text h3 {
+      font-family: var(--condensed);
+      font-size: 1.7rem;
+      line-height: 1.15;
+      margin-bottom: .5rem;
+      color: var(--text);
+    }
+    .crikitiso-ad-text p {
+      color: var(--text-dim);
+      font-size: .9rem;
+      margin: 0;
+    }
+    @media (max-width: 600px) {
+      .crikitiso-ad-inner { flex-direction: column; text-align: center; padding: 1.5rem; }
+      .crikitiso-ad-gif { width: 90px; height: 90px; }
+    }
+
+    /* ── Animaciones mejoradas de cards ── */
+    .download-card {
+      transition: transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s ease !important;
+    }
+    .download-card:hover {
+      transform: translateY(-8px) scale(1.01) !important;
+    }
+    .dl-feat {
+      transition: background .2s, color .2s, transform .2s;
+    }
+    .dl-feat:hover {
+      background: var(--orange) !important;
+      color: #000 !important;
+      transform: scale(1.08);
+    }
+    /* Shimmer en botones de descarga */
+    .dl-btn {
+      position: relative;
+      overflow: hidden;
+    }
+    .dl-btn::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 60%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+      animation: shimmer 2.5s ease-in-out infinite;
+    }
+    @keyframes shimmer {
+      0%   { left: -100%; }
+      60%  { left: 150%;  }
+      100% { left: 150%;  }
+    }
+    /* Step arrows animados */
+    .step-arrow {
+      animation: arrowBounce 1.5s ease-in-out infinite;
+    }
+    @keyframes arrowBounce {
+      0%, 100% { transform: translateX(0); opacity: .7; }
+      50%       { transform: translateX(5px); opacity: 1; }
+    }
+  </style>
 </head>
 <body>
 
@@ -65,6 +183,18 @@
     </div>
   </div>
 
+  <!-- BANNER ANIMADO CRIKITISO -->
+  <div class="crikitiso-ad-banner">
+    <div class="crikitiso-ad-inner">
+      <img src="EligeCrikitiso_adv.gif" alt="Elige Crikitiso" class="crikitiso-ad-gif"/>
+      <div class="crikitiso-ad-text">
+        <div class="crikitiso-ad-tag">&gt;_ ¿por qué crikitiso?</div>
+        <h3>Linux <span class="accent">listo para usar.</span><br/>Sin configurar. Sin esperas.</h3>
+        <p>Descarga tu ISO personalizada y arranca en minutos. Gaming o Edición, tú eliges.</p>
+      </div>
+    </div>
+  </div>
+
   <section class="download-section">
 
     <!-- GAMING -->
@@ -74,7 +204,7 @@
         <div>
           <div class="dl-tag">ISO — GAMING</div>
           <h2 class="dl-title">Crikitiso Gaming</h2>
-          <div class="dl-version">v1.0.0 · Pop!_OS base · ~2.8 GB</div>
+          <div class="dl-version">v1.0.0 · Pop!_OS 24.04 base · ~6-7 GB</div>
         </div>
         <div class="dl-badge dl-badge-red">GAMING</div>
       </div>
@@ -117,7 +247,7 @@
         <div>
           <div class="dl-tag">ISO — EDICIÓN</div>
           <h2 class="dl-title">Crikitiso Edición</h2>
-          <div class="dl-version">v1.0.0 · Pop!_OS base · ~3.1 GB</div>
+          <div class="dl-version">v1.0.0 · Ubuntu Desktop 24.04 base · ~14 GB</div>
         </div>
         <div class="dl-badge dl-badge-orange">POPULAR</div>
       </div>

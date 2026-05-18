@@ -261,7 +261,7 @@ async function iniciarContadores() {
   const osEl  = document.getElementById('stat-os');
   const valEl = document.getElementById('stat-valoraciones');
 
-  if (isoEl) isoEl.textContent = '3';
+  if (isoEl) isoEl.textContent = '2';
   if (osEl)  osEl.textContent  = '100%';
   if (valEl) valEl.textContent = total > 0 ? total : '0';
 }
