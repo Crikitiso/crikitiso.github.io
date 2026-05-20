@@ -1,0 +1,616 @@
+/* =============================================
+   CRIKITISO — animations.css
+   Efectos futuristas globales
+   ============================================= */
+
+/* ════════════════════════════════════════════
+   1. CURSOR PERSONALIZADO
+   ════════════════════════════════════════════ */
+#custom-cursor {
+  width: 36px; height: 36px;
+  border: 1.5px solid var(--orange);
+  border-radius: 50%;
+  position: fixed; pointer-events: none;
+  z-index: 99999;
+  transition: transform .15s ease, border-color .2s, background .2s;
+  mix-blend-mode: difference;
+}
+#custom-cursor.hover {
+  transform: scale(1.8) !important;
+  background: rgba(249,115,22,.12);
+  border-color: #fff;
+}
+#cursor-dot {
+  width: 5px; height: 5px;
+  background: var(--orange);
+  border-radius: 50%;
+  position: fixed; pointer-events: none;
+  z-index: 99999;
+  box-shadow: 0 0 8px var(--orange), 0 0 16px var(--orange);
+}
+
+/* ════════════════════════════════════════════
+   2. SCROLL PROGRESS BAR
+   ════════════════════════════════════════════ */
+#scroll-progress {
+  position: fixed; top: 0; left: 0;
+  height: 2px; width: 0%;
+  background: linear-gradient(90deg, var(--orange), #fff, var(--orange));
+  background-size: 200% 100%;
+  z-index: 99998;
+  animation: progressShimmer 2s linear infinite;
+  box-shadow: 0 0 10px var(--orange), 0 0 20px var(--orange);
+}
+@keyframes progressShimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ════════════════════════════════════════════
+   3. NAVBAR — glow + partícula activa
+   ════════════════════════════════════════════ */
+.navbar {
+  border-bottom: 1px solid rgba(249,115,22,.2) !important;
+  box-shadow: 0 1px 30px rgba(249,115,22,.06);
+}
+.nav-brand {
+  animation: brandPulse 3s ease-in-out infinite;
+  position: relative;
+}
+@keyframes brandPulse {
+  0%,100% { text-shadow: 0 0 8px rgba(249,115,22,.4); }
+  50%      { text-shadow: 0 0 20px rgba(249,115,22,.9), 0 0 40px rgba(249,115,22,.3); }
+}
+.nav-links a {
+  transition: color .2s, text-shadow .2s !important;
+}
+.nav-links a:hover {
+  text-shadow: 0 0 12px rgba(249,115,22,.8) !important;
+}
+.nav-links a::after {
+  height: 2px !important;
+  box-shadow: 0 0 8px var(--orange);
+  animation: none !important;
+}
+
+/* ════════════════════════════════════════════
+   4. PAGE HERO — HUD corners + scanlines
+   ════════════════════════════════════════════ */
+.page-hero {
+  position: relative;
+}
+.page-hero::before {
+  content: '';
+  position: absolute;
+  top: 16px; left: 16px;
+  width: 28px; height: 28px;
+  border-top: 2px solid rgba(249,115,22,.6);
+  border-left: 2px solid rgba(249,115,22,.6);
+  pointer-events: none; z-index: 5;
+  animation: hudCornerBlink 2.5s ease-in-out infinite;
+}
+.page-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 16px; right: 16px;
+  width: 28px; height: 28px;
+  border-bottom: 2px solid rgba(249,115,22,.6);
+  border-right: 2px solid rgba(249,115,22,.6);
+  pointer-events: none; z-index: 5;
+  animation: hudCornerBlink 2.5s ease-in-out infinite .8s;
+}
+@keyframes hudCornerBlink {
+  0%,100% { opacity: .4; transform: scale(1); }
+  50%      { opacity: 1;  transform: scale(1.1); }
+}
+.page-hero-content {
+  animation: heroContentIn .8s cubic-bezier(.23,1,.32,1) forwards;
+}
+@keyframes heroContentIn {
+  from { opacity:0; transform:translateY(30px); filter:blur(6px); }
+  to   { opacity:1; transform:translateY(0);    filter:blur(0); }
+}
+
+/* ════════════════════════════════════════════
+   5. TERMINAL TAG — typewriter glow
+   ════════════════════════════════════════════ */
+.terminal-tag {
+  position: relative;
+  display: inline-block;
+}
+.terminal-tag::after {
+  content: '▊';
+  margin-left: 2px;
+  animation: cursorBlink .7s step-end infinite;
+  color: var(--orange);
+}
+@keyframes cursorBlink {
+  0%,100% { opacity:1; }
+  50%      { opacity:0; }
+}
+
+/* ════════════════════════════════════════════
+   6. SECTION TAGS
+   ════════════════════════════════════════════ */
+.section-tag {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+.section-tag::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(249,115,22,.15), transparent);
+  animation: tagSweep 3s ease-in-out infinite;
+}
+@keyframes tagSweep {
+  0%   { left:-100%; }
+  50%  { left:100%;  }
+  100% { left:100%;  }
+}
+
+/* ════════════════════════════════════════════
+   7. CARDS — hover futurista universal
+   ════════════════════════════════════════════ */
+.iso-card, .download-card, .team-card,
+.contact-card, .foro-topic-card, .value-item,
+.why-item, .step, .faq-item {
+  transition: transform .35s cubic-bezier(.34,1.56,.64,1),
+              box-shadow .35s ease,
+              border-color .3s ease !important;
+}
+.iso-card:hover, .download-card:hover,
+.team-card:hover, .contact-card:hover,
+.foro-topic-card:hover, .why-item:hover {
+  box-shadow: 0 20px 60px rgba(249,115,22,.2),
+              0 0 0 1px rgba(249,115,22,.15) !important;
+  border-color: rgba(249,115,22,.3) !important;
+}
+
+/* Corner bracket en todas las cards */
+.iso-card, .download-card, .team-card {
+  position: relative;
+  overflow: hidden;
+}
+.iso-card::before, .download-card::before, .team-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(249,115,22,.04) 50%,
+    transparent 60%
+  );
+  transition: left .5s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+.iso-card:hover::before,
+.download-card:hover::before,
+.team-card:hover::before {
+  left: 100%;
+}
+
+/* ════════════════════════════════════════════
+   8. BOTONES — shimmer + glow
+   ════════════════════════════════════════════ */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  transition: transform .2s cubic-bezier(.34,1.56,.64,1),
+              box-shadow .2s ease !important;
+}
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -120%;
+  width: 60%; height: 100%;
+  background: linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);
+  animation: btnShimmer 3s ease-in-out infinite;
+}
+@keyframes btnShimmer {
+  0%,100% { left:-120%; }
+  50%      { left:160%; }
+}
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.03) !important;
+  box-shadow: 0 8px 30px rgba(249,115,22,.5) !important;
+}
+.btn-ghost {
+  transition: transform .2s ease, box-shadow .2s ease,
+              background .2s ease !important;
+}
+.btn-ghost:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 20px rgba(249,115,22,.2) !important;
+}
+
+/* ════════════════════════════════════════════
+   9. SCROLL REVEAL — entrada suave
+   ════════════════════════════════════════════ */
+.scroll-hidden {
+  opacity: 0;
+  transform: translateY(28px);
+  filter: blur(3px);
+  transition: opacity .6s ease, transform .6s cubic-bezier(.23,1,.32,1),
+              filter .6s ease !important;
+}
+.scroll-hidden.visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* ════════════════════════════════════════════
+   10. FOOTER — glow line top
+   ════════════════════════════════════════════ */
+.footer {
+  position: relative;
+}
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--orange), transparent);
+  animation: footerLineGlow 3s ease-in-out infinite;
+}
+@keyframes footerLineGlow {
+  0%,100% { opacity: .4; left:20%; right:20%; }
+  50%      { opacity: 1;  left:5%;  right:5%; }
+}
+.footer-links a {
+  transition: color .2s, text-shadow .2s !important;
+}
+.footer-links a:hover {
+  text-shadow: 0 0 10px rgba(249,115,22,.7) !important;
+}
+.footer-logo {
+  transition: transform .3s ease, filter .3s ease;
+}
+.footer-logo:hover {
+  transform: rotate(-5deg) scale(1.1);
+  filter: drop-shadow(0 0 8px rgba(249,115,22,.8));
+}
+
+/* ════════════════════════════════════════════
+   11. STATS BAR — número contando
+   ════════════════════════════════════════════ */
+.stat-num {
+  display: inline-block;
+  animation: statFlipIn .7s cubic-bezier(.34,1.56,.64,1) both;
+}
+.stat-item:nth-child(1) .stat-num { animation-delay: .1s; }
+.stat-item:nth-child(3) .stat-num { animation-delay: .3s; }
+.stat-item:nth-child(5) .stat-num { animation-delay: .5s; }
+.stat-item:nth-child(7) .stat-num { animation-delay: .7s; }
+@keyframes statFlipIn {
+  from { transform:rotateX(90deg) scale(.5); opacity:0; filter:blur(4px); }
+  to   { transform:rotateX(0) scale(1);     opacity:1; filter:blur(0); }
+}
+.stat-item:hover .stat-num {
+  color: var(--orange);
+  text-shadow: 0 0 20px rgba(249,115,22,.8);
+  transition: color .2s, text-shadow .2s;
+}
+
+/* ════════════════════════════════════════════
+   12. STEP ARROWS
+   ════════════════════════════════════════════ */
+.step-arrow {
+  display: inline-block;
+  animation: arrowPulse 1.3s ease-in-out infinite;
+  color: var(--orange) !important;
+  text-shadow: 0 0 10px rgba(249,115,22,.6);
+}
+@keyframes arrowPulse {
+  0%,100% { transform:translateX(0); opacity:.5; }
+  50%      { transform:translateX(8px); opacity:1; }
+}
+.step-num {
+  animation: stepNumPulse 3s ease-in-out infinite;
+}
+@keyframes stepNumPulse {
+  0%,100% { opacity:1; }
+  50%      { opacity:.4; text-shadow:0 0 30px var(--orange); }
+}
+
+/* ════════════════════════════════════════════
+   13. FAQ ITEMS
+   ════════════════════════════════════════════ */
+.faq-q {
+  transition: color .2s, padding-left .25s ease !important;
+}
+.faq-q:hover {
+  color: var(--orange) !important;
+  padding-left: 6px !important;
+}
+.faq-arrow {
+  display: inline-block;
+  transition: transform .3s cubic-bezier(.34,1.56,.64,1), color .2s !important;
+}
+.faq-item.open .faq-arrow {
+  transform: rotate(90deg) !important;
+  color: var(--orange);
+}
+.faq-a {
+  animation: faqSlideIn .3s ease forwards;
+}
+@keyframes faqSlideIn {
+  from { opacity:0; transform:translateY(-6px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* ════════════════════════════════════════════
+   14. TEAM CARDS — avatar glow
+   ════════════════════════════════════════════ */
+.team-avatar {
+  transition: transform .4s cubic-bezier(.34,1.56,.64,1),
+              box-shadow .3s ease !important;
+}
+.team-card:hover .team-avatar {
+  transform: scale(1.1) rotate(-3deg) !important;
+  box-shadow: 0 0 30px rgba(249,115,22,.5) !important;
+}
+.team-tags span {
+  transition: background .2s, color .2s, transform .25s cubic-bezier(.34,1.56,.64,1);
+  display: inline-block;
+}
+.team-tags span:hover {
+  background: var(--orange) !important;
+  color: #000 !important;
+  transform: scale(1.1) translateY(-2px);
+}
+
+/* ════════════════════════════════════════════
+   15. DOWNLOAD FEATURES BADGES
+   ════════════════════════════════════════════ */
+.dl-feat {
+  transition: background .2s, color .2s,
+              transform .25s cubic-bezier(.34,1.56,.64,1) !important;
+  cursor: default;
+}
+.dl-feat:hover {
+  background: var(--orange) !important;
+  color: #000 !important;
+  transform: scale(1.1) translateY(-2px) !important;
+}
+
+/* ════════════════════════════════════════════
+   16. CONTACT CARDS
+   ════════════════════════════════════════════ */
+.contact-card {
+  transition: transform .3s cubic-bezier(.34,1.56,.64,1),
+              box-shadow .3s ease, border-color .3s !important;
+}
+.contact-card:hover {
+  transform: translateX(6px) !important;
+  box-shadow: -4px 0 20px rgba(249,115,22,.2) !important;
+  border-left: 2px solid var(--orange) !important;
+}
+.cc-icon {
+  transition: transform .4s cubic-bezier(.34,1.56,.64,1);
+}
+.contact-card:hover .cc-icon {
+  transform: scale(1.3) rotate(10deg);
+}
+
+/* ════════════════════════════════════════════
+   17. FORM INPUTS — focus glow
+   ════════════════════════════════════════════ */
+.form-input:focus {
+  outline: none !important;
+  border-color: var(--orange) !important;
+  box-shadow: 0 0 0 3px rgba(249,115,22,.15),
+              0 0 20px rgba(249,115,22,.1) !important;
+  transition: box-shadow .3s ease, border-color .3s ease;
+}
+.form-input {
+  transition: border-color .3s ease, box-shadow .3s ease !important;
+}
+
+/* ════════════════════════════════════════════
+   18. FORO TOPIC CARDS
+   ════════════════════════════════════════════ */
+.foro-topic-card {
+  transition: transform .35s cubic-bezier(.34,1.56,.64,1),
+              box-shadow .3s, border-color .3s !important;
+}
+.foro-topic-card:hover {
+  transform: translateY(-6px) scale(1.02) !important;
+  box-shadow: 0 16px 40px rgba(249,115,22,.15) !important;
+}
+.foro-topic-icon {
+  transition: transform .4s cubic-bezier(.34,1.56,.64,1);
+  display: inline-block;
+}
+.foro-topic-card:hover .foro-topic-icon {
+  transform: scale(1.3) rotate(-8deg);
+}
+
+/* ════════════════════════════════════════════
+   19. RATING STARS
+   ════════════════════════════════════════════ */
+.star {
+  transition: transform .2s cubic-bezier(.34,1.56,.64,1),
+              color .2s, text-shadow .2s !important;
+  display: inline-block;
+  cursor: pointer;
+}
+.star:hover, .star.hover, .star.filled {
+  transform: scale(1.3) !important;
+  text-shadow: 0 0 10px rgba(251,191,36,.8) !important;
+}
+
+/* ════════════════════════════════════════════
+   20. OSS NOTICE BAR
+   ════════════════════════════════════════════ */
+.oss-notice {
+  position: relative;
+  overflow: hidden;
+}
+.oss-notice::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 50%; height: 100%;
+  background: linear-gradient(90deg,transparent,rgba(249,115,22,.06),transparent);
+  animation: ossSweep 4s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes ossSweep {
+  0%   { left:-100%; }
+  60%  { left:150%;  }
+  100% { left:150%;  }
+}
+
+/* ════════════════════════════════════════════
+   21. LOGO IMAGE — navbar
+   ════════════════════════════════════════════ */
+.logo-img {
+  transition: transform .4s cubic-bezier(.34,1.56,.64,1),
+              filter .3s ease;
+}
+.logo-img:hover {
+  transform: rotate(-8deg) scale(1.15);
+  filter: drop-shadow(0 0 10px rgba(249,115,22,.8));
+}
+
+/* ════════════════════════════════════════════
+   22. COOKIE BANNER
+   ════════════════════════════════════════════ */
+.cookie-banner.show {
+  animation: cookieSlideUp .5s cubic-bezier(.34,1.56,.64,1) forwards !important;
+}
+@keyframes cookieSlideUp {
+  from { transform:translateY(100%); opacity:0; }
+  to   { transform:translateY(0); opacity:1; }
+}
+
+/* ════════════════════════════════════════════
+   23. DOWNLOAD CARD — shimmer botones
+   ════════════════════════════════════════════ */
+.dl-btn {
+  position: relative;
+  overflow: hidden;
+}
+.dl-btn::after {
+  content: '';
+  position: absolute;
+  top:0; left:-120%;
+  width:55%; height:100%;
+  background: linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);
+  animation: dlShimmer 3.5s ease-in-out infinite;
+}
+@keyframes dlShimmer {
+  0%,100% { left:-120%; }
+  50%      { left:160%; }
+}
+
+/* ════════════════════════════════════════════
+   24. GLITCH EN H1/H2 PRINCIPAL
+   ════════════════════════════════════════════ */
+.hero-title, .page-hero-content h1 {
+  animation: titleIn .9s cubic-bezier(.23,1,.32,1) both;
+}
+@keyframes titleIn {
+  0%   { opacity:0; transform:translateY(20px) skewX(-4deg); filter:blur(8px); }
+  60%  { transform:translateY(-4px) skewX(1deg); filter:blur(0); }
+  100% { opacity:1; transform:translateY(0) skewX(0); }
+}
+
+/* ════════════════════════════════════════════
+   25. FLOATING PARTICLES EXTRA en page-hero
+   ════════════════════════════════════════════ */
+@keyframes floatUp {
+  0%   { transform:translateY(0) rotate(0deg); opacity:.6; }
+  100% { transform:translateY(-120px) rotate(180deg); opacity:0; }
+}
+
+/* ════════════════════════════════════════════
+   26. CARD LINK ARROW
+   ════════════════════════════════════════════ */
+.card-link {
+  transition: letter-spacing .3s, color .2s !important;
+}
+.card-link:hover {
+  letter-spacing: .08em !important;
+}
+
+/* ════════════════════════════════════════════
+   27. ADMIN OPINION CARDS
+   ════════════════════════════════════════════ */
+.admin-opinion-card {
+  transition: transform .3s ease, box-shadow .3s ease !important;
+}
+.admin-opinion-card:hover {
+  transform: translateX(4px) !important;
+  box-shadow: -3px 0 20px rgba(249,115,22,.15) !important;
+}
+
+/* ════════════════════════════════════════════
+   28. OPINION CARDS (ratings)
+   ════════════════════════════════════════════ */
+.opinion-card {
+  transition: transform .3s cubic-bezier(.34,1.56,.64,1),
+              box-shadow .3s ease !important;
+}
+.opinion-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 12px 30px rgba(249,115,22,.12) !important;
+}
+
+/* ════════════════════════════════════════════
+   29. VALUE ITEMS (nosotros)
+   ════════════════════════════════════════════ */
+.value-item {
+  transition: transform .35s cubic-bezier(.34,1.56,.64,1),
+              box-shadow .3s ease !important;
+}
+.value-item:hover {
+  transform: translateY(-8px) scale(1.02) !important;
+  box-shadow: 0 16px 40px rgba(249,115,22,.15) !important;
+}
+.value-icon {
+  transition: transform .4s cubic-bezier(.34,1.56,.64,1);
+  display: inline-block;
+}
+.value-item:hover .value-icon {
+  transform: scale(1.25) rotate(-5deg);
+}
+
+/* ════════════════════════════════════════════
+   30. SCANLINES — más visible en page-hero
+   ════════════════════════════════════════════ */
+.scanlines {
+  opacity: .04 !important;
+  animation: scanlinesMove 8s linear infinite;
+}
+@keyframes scanlinesMove {
+  from { background-position: 0 0; }
+  to   { background-position: 0 100px; }
+}
+
+/* ════════════════════════════════════════════
+   31. HERO BG GRID — movimiento suave
+   ════════════════════════════════════════════ */
+.hero-bg-grid {
+  animation: gridDrift 20s linear infinite;
+}
+@keyframes gridDrift {
+  from { background-position: 0 0; }
+  to   { background-position: 60px 60px; }
+}
+
+/* ════════════════════════════════════════════
+   MOBILE — desactivar pesadas en móvil
+   ════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  #custom-cursor, #cursor-dot { display: none !important; }
+  .iso-card:hover, .download-card:hover { transform: none !important; }
+  .btn-primary::before { display: none; }
+}
